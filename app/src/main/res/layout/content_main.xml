@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    android:background="@drawable/bg"
+    tools:showIn="@layout/app_bar_main">
+
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carouselView"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:fillColor="#FFFFFFFF"
+        app:pageColor="#00000000"
+        app:radius="6dp"
+        app:slideInterval="3000"
+        app:strokeColor="#FF777777"
+        app:strokeWidth="1dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+
+        android:layout_below="@+id/carouselView">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="@dimen/lebar"
+            android:layout_height="@dimen/tinggi"
+            android:text="Nama"
+            android:id="@+id/nama"/>
+
+        <Button
+            android:layout_width="@dimen/lebar"
+            android:layout_height="@dimen/tinggi"
+            android:text="Kalkulator"
+            android:id="@+id/kalkulator"/>
+
+        <Button
+            android:layout_width="@dimen/lebar"
+            android:layout_height="@dimen/tinggi"
+            android:text="Lingkaran"
+            android:id="@+id/lingkaran"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="Bilangan"
+                android:id="@+id/bilangan"/>
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="Login"
+                android:id="@+id/login"/>
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="Sign Up"
+                android:id="@+id/signup"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="Calculator"
+                android:id="@+id/calculator"/>
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="BMI"
+                android:id="@+id/bmi"/>
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="List View"
+                android:id="@+id/listview"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="Catatan"
+                android:id="@+id/catatan"/>
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="File"
+                android:id="@+id/internalexternal"/>
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="Storage"
+                android:id="@+id/storage"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="List"
+                android:id="@+id/list"/>
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="SQLite"
+                android:id="@+id/sqlite"/>
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="MySQL"
+                android:id="@+id/mysql"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="CEK GPS"
+                android:id="@+id/gps"/>
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="Seluler"
+                android:id="@+id/seluler"/>
+
+            <Button
+                android:layout_width="@dimen/lebar"
+                android:layout_height="@dimen/tinggi"
+                android:text="Sensor"
+                android:id="@+id/sensor"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

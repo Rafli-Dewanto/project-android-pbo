@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sugiartha.juniorandroid">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailSharedPreferenceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SharedPreferenceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StorageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InternalExternalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CatatanExternalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SensorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KoneksiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GPS"
+            android:exported="false" />
+        <activity android:name=".AddEditActivity" />
+        <activity
+            android:name=".SQLiteActivity"
+            android:label="@string/title_activity_sqlite"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PegawaiTampilSemuaActivity" />
+        <activity android:name=".PegawaiTampilActivity" />
+        <activity android:name=".PegawaiMainActivity" />
+        <activity android:name=".ListActivity" />
+        <activity android:name=".ListViewActivity" />
+        <activity android:name=".HitungBMIActivity" />
+        <activity
+            android:name=".CalculatorActivity"
+            android:label="Kalkulator Advance" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".BilanganActivity" />
+        <activity android:name=".KalkulatorActivity" />
+        <activity android:name=".LingkaranActivity" />
+        <activity android:name=".NamaActivity" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

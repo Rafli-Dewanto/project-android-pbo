@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".InternalExternalActivity">
+
+    <Button
+        android:id="@+id/btnBuatFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buat File"/>
+
+    <Button
+        android:id="@+id/btnUbahFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubah File"/>
+
+    <Button
+        android:id="@+id/btnBacaFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Baca File"/>
+
+    <Button
+        android:id="@+id/btnHapusFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hapus File"/>
+
+    <EditText
+        android:id="@+id/textBaca"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:inputType="textMultiLine"
+        android:background="@android:color/darker_gray"
+        android:ems="10"
+        android:gravity="left|top"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="Hasil Baca File"/>
+
+</LinearLayout>
