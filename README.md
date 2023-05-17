@@ -49,12 +49,12 @@ To contribute to the project, please follow the steps below:
     ```
 6. Push the branch to your forked repository:
     ```bash
-    git push origin feature/your-feature-name
+    git push -u origin feature/your-feature-name
     ```
 7. Open a pull request on the main repository. Be sure to provide a clear and descriptive title, as well as a detailed description of the changes you've made.
 
 ## License
 
-This project is a college assignment and is provided for educational purposes only. The code and assets are not licensed for general use, modification, or distribution.
+© This project is a college assignment and is provided for educational purposes only. The code and assets are not licensed for general use, modification, or distribution.
 
 ---
