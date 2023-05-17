@@ -31,10 +31,13 @@ These instructions will help you set up the project on your local machine for de
 
 ## Contributing
 
-We welcome contributions from everyone! If you'd like to contribute to the project, please follow the steps below:
+To contribute to the project, please follow the steps below:
 
-1. Fork the repository on GitHub.
-2. Clone your forked repository to your local machine.
+1. Open up your terminal and cd to your local repo
+2. Checkout dev branch on your local machine
+    ```bash
+    git checkout dev
+    ```
 3. Create a new branch for your feature or bug fix:
     ```bash
     git checkout -b feature/your-feature-name
