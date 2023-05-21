@@ -6,7 +6,9 @@ repository tugas kelompok mata kuliah pemrograman berbasis objek materi android
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+  - [Requirements](#requirements)
 - [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
 - [License](#license)
 
 ## Getting Started
@@ -18,6 +20,18 @@ These instructions will help you set up the project on your local machine for de
 - [Android Studio](https://developer.android.com/studio): Download and install Android Studio on your machine.
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git): Install Git if it's not already installed.
 - GitHub Account: Create a GitHub account if you don't have one.
+
+### Requirements
+
+- Android SDK version: 16 (minSdkVersion)
+- Target SDK version: 32 (targetSdkVersion)
+- Google Play Services Location library version: 20.0.0
+- AndroidX libraries:
+  - androidx.appcompat:appcompat:1.1.0
+  - androidx.constraintlayout:constraintlayout:1.1.3
+- Third-party libraries:
+  - CarouselView library version: 0.1.4
+  - Dexter library version: 6.2.3
 
 ### Installation
 
@@ -34,7 +48,7 @@ These instructions will help you set up the project on your local machine for de
 To contribute to the project, please follow the steps below:
 
 1. Open up your terminal and cd to your local repo
-2. Checkout dev branch on your local machine
+2. Checkout dev branch on your local repository
     ```bash
     git checkout dev
     ```
@@ -52,6 +66,11 @@ To contribute to the project, please follow the steps below:
     git push -u origin feature/your-feature-name
     ```
 7. Open a pull request on the main repository. Be sure to provide a clear and descriptive title, as well as a detailed description of the changes you've made.
+
+## Acknowledgements
+
+- [CarouselView library](https://github.com/sayyam/carouselview)
+- [Dexter library](https://github.com/Karumi/Dexter)
 
 ## License
 
