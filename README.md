@@ -32,6 +32,7 @@ These instructions will help you set up the project on your local machine for de
 - Third-party libraries:
   - CarouselView library version: 0.1.4
   - Dexter library version: 6.2.3
+  - Flexbox Layout version: 3.0.0
 
 ### Installation
 
@@ -71,6 +72,7 @@ To contribute to the project, please follow the steps below:
 
 - [CarouselView library](https://github.com/sayyam/carouselview)
 - [Dexter library](https://github.com/Karumi/Dexter)
+- [Flexbox Layout](https://github.com/google/flexbox-layout)
 
 ## License
 
