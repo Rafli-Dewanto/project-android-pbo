@@ -3,15 +3,13 @@ repository tugas kelompok mata kuliah pemrograman berbasis objek materi android
 
 ## Table of Contents
 
-- [Project Android PBO](#project-android-pbo)
-  - [Table of Contents](#table-of-contents)
-  - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Requirements](#requirements)
-    - [Installation](#installation)
-  - [Contributing](#contributing)
-  - [Acknowledgements](#acknowledgements)
-  - [License](#license)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Requirements](#requirements)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
 
 ## Getting Started
 
