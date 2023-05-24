@@ -56,7 +56,6 @@
         android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
         android:paddingBottom="80dp"
-        android:text="Halo Rafli\nPeserta VSGA"
         android:textAlignment="center" />
 
 
