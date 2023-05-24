@@ -8,34 +8,97 @@
     android:orientation="vertical"
     tools:context=".HitungBMIActivity">
 
-    <EditText
-        android:id="@+id/txtBeratBadan"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Isikan berat badan (kg)"
-        android:inputType="number" />
+        android:layout_height="130dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-    <EditText
-        android:id="@+id/txtTinggiBadan"
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:layout_margin="12dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Berat badan (kg)"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtBeratBadan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="60kg"
+                android:textSize="28sp" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:layout_margin="12dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Tinggi badan (m)"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtTinggiBadan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:ems="5"
+                android:gravity="center"
+                android:hint="1.7m"
+                android:textSize="28sp" />
+
+
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="12dp"
+        android:layout_margin="12dp"
+        app:cardElevation="2dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Isikan tinggi badan (m)"
-        android:inputType="number|numberDecimal" />
+        android:layout_height="110dp">
 
-    <Button
-        android:id="@+id/btnCekBMI"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CEK BMI" />
+        <Button
+            android:id="@+id/btnCekBMI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CEK BMI" />
 
-    <TextView
-        android:id="@+id/txtStatusBadan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Status Badan"
-        android:textAlignment="center"
-        android:textSize="24sp" />
-
+        <TextView
+            android:id="@+id/txtStatusBadan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Status Badan"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
