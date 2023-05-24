@@ -40,11 +40,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@drawable/primary_button"
+        android:background="@drawable/btn_selector"
         android:fontFamily="@font/poppins_semibold"
         android:paddingVertical="14dp"
         android:text="Calculate"
-        android:textColor="@color/putih" />
+        android:textColor="@color/colorBackground" />
 
     <TextView
         android:id="@+id/tv_luas"

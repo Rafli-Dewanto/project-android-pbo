@@ -42,7 +42,7 @@
         android:id="@+id/btnOk"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/primary_button"
+        android:background="@drawable/btn_selector"
         android:fontFamily="@font/poppins_medium"
         android:text="OK"
         android:textColor="#fff" />
