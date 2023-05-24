@@ -52,7 +52,10 @@
         <activity android:name=".PegawaiTampilActivity" />
         <activity android:name=".PegawaiMainActivity" />
         <activity android:name=".ListActivity" />
-        <activity android:name=".ListViewActivity" />
+        <activity
+            android:name=".ListViewActivity"
+            android:label="List Negara"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".HitungBMIActivity" />
         <activity
             android:name=".CalculatorActivity"
@@ -62,8 +65,9 @@
         <activity android:name=".BilanganActivity" />
         <activity android:name=".KalkulatorActivity" />
         <activity android:name=".LingkaranActivity" />
-        <activity android:name=".NamaActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"/>
+        <activity
+            android:name=".NamaActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

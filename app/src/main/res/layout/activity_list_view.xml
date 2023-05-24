@@ -21,9 +21,9 @@
 
         <ImageView
             android:id="@+id/imgView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/icon" />
 
     </LinearLayout>
 
@@ -39,15 +39,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Text1"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/poppins_bold" />
 
         <TextView
             android:id="@+id/text2"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/poppins_regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Text2"
-            android:textSize="11dp" />
+            android:textSize="11sp" />
     </LinearLayout>
 
 </LinearLayout>
