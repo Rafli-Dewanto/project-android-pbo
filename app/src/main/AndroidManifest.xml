@@ -62,7 +62,8 @@
         <activity android:name=".BilanganActivity" />
         <activity android:name=".KalkulatorActivity" />
         <activity android:name=".LingkaranActivity" />
-        <activity android:name=".NamaActivity" />
+        <activity android:name=".NamaActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true"
