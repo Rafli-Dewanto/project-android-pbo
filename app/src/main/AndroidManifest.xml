@@ -24,8 +24,8 @@
             android:exported="false" />
         <activity
             android:name=".SharedPreferenceActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".StorageActivity"
             android:exported="false" />
@@ -44,7 +44,9 @@
         <activity
             android:name=".GPS"
             android:exported="false" />
-        <activity android:name=".AddEditActivity" />
+        <activity
+            android:name=".AddEditActivity"
+            android:exported="false" />
         <activity
             android:name=".SQLiteActivity"
             android:label="@string/title_activity_sqlite"
