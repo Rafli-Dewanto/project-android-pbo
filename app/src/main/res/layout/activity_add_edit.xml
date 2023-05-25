@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,41 +12,66 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/txt_name"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
         android:layout_height="wrap_content"
-        android:hint="Input Nama"/>
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/form_edit"
+        android:hint="Nama"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blueish_gray"
+        android:layout_marginLeft="20dp" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/txt_address"
-        android:layout_marginTop="10dp"
+        android:layout_width="300dp"
+        android:layout_marginStart="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/form_edit"
+        android:hint="Alamat"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="@color/gray"
+        android:textColorHint="@color/blueish_gray"
+        android:layout_marginLeft="20dp" />
+
+    <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Input Alamat"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        app:justifyContent="flex_start">
 
         <Button
             android:id="@+id/btn_submit"
-            android:layout_weight="0.5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"/>
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn_selector"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Submit"
+            android:textColor="@color/colorBackground" />
 
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_weight="0.5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:text="Cancel"
+            android:textColor="@color/gray" />
 
-    </LinearLayout>
+    </com.google.android.flexbox.FlexboxLayout>
 
 </LinearLayout>
