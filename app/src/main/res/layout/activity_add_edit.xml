@@ -17,12 +17,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/colorPrimary"
         android:layout_gravity="center"
         android:layout_marginTop="120dp"
-        android:text="Welcome!" />
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Welcome!"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40sp" />
 
 
     <androidx.cardview.widget.CardView
@@ -42,21 +42,20 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:fontFamily="@font/poppins_medium"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
                 android:layout_marginBottom="14dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Masukkan data diri"
-                android:layout_marginLeft="4dp" />
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="12dp"
                 android:background="@drawable/form_edit"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Nama"
@@ -64,12 +63,24 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/blueish_gray" />
 
+            <TextView
+                android:id="@+id/tv_name_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:text="* Username must not be null"
+                android:textColor="@color/error"
+                android:visibility="gone" />
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txt_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="24dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/form_edit"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Alamat"
@@ -78,10 +89,22 @@
                 android:textColor="@color/gray"
                 android:textColorHint="@color/blueish_gray" />
 
+            <TextView
+                android:id="@+id/tv_address_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="* Address must not be null"
+                android:textColor="@color/error"
+                android:visibility="gone"
+                android:layout_marginLeft="4dp" />
+
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="40dp"
                 app:justifyContent="flex_start">
 
