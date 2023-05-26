@@ -12,6 +12,7 @@
 
 
     <color name="black">#000</color>
+    <color name="error">#FF3737</color>
     <color name="light_gray">#A0A0A0</color>
     <color name="very_light_gray">#EBEBEB</color>
     <color name="blueish_gray">#6C757D</color>
