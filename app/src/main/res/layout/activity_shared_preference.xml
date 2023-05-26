@@ -10,56 +10,60 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/ic_digitalent"
+        android:layout_marginBottom="24dp"
         android:scaleType="centerCrop"
-        android:layout_marginBottom="24dp" />
+        android:src="@drawable/ic_digitalent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_extra_bold"
-        android:textColor="@color/black"
-        android:textSize="24sp"
         android:layout_marginBottom="60dp"
-        android:text="Digitalent Scholarship"/>
+        android:fontFamily="@font/poppins_extra_bold"
+        android:text="Digitalent Scholarship"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/form_edit"
         android:hint="Username"
-        android:textColor="@color/gray"
-        android:textColorHint="@color/colorAccent"
-        android:backgroundTint="@color/colorAccent"
         android:padding="12dp"
-        android:layout_marginBottom="12dp" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/blueish_gray" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/form_edit"
         android:hint="Password"
-        android:textColor="@color/gray"
-        android:textColorHint="@color/colorAccent"
-        android:backgroundTint="@color/colorAccent"
-        android:padding="12dp"
         android:inputType="textPassword"
-        android:layout_marginBottom="24dp" />
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blueish_gray" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:textColor="@color/colorBackground"
+        android:layout_marginHorizontal="20dp"
         android:background="@drawable/btn_selector"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:text="Login"
+        android:textColor="@color/colorBackground" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_regular"
         android:text="Forgot Password?"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="24dp" />
+        android:textColor="@color/colorPrimary" />
 
 </LinearLayout>
