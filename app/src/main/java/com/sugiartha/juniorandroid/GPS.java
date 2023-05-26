@@ -42,7 +42,7 @@ public class GPS extends AppCompatActivity {
     // Initializing other items
     // from layout file
     TextView latitudeTextView, longitudeTextView;
-    Button backArrowButton;
+    ImageView backArrowButton;
     int PERMISSION_ID = 44;
 
     @Override
