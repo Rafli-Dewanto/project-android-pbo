@@ -38,17 +38,14 @@ public class NamaActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length() == 0 && errorTextView.getVisibility() != View.VISIBLE) {
-                    errorTextView.setVisibility(View.VISIBLE);
-                } else if (charSequence.length() > 0 && errorTextView.getVisibility() == View.VISIBLE) {
-                    errorTextView.setVisibility(View.GONE);
-                }
+
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.length() > 0) {
                     errorTextView.setVisibility(View.GONE);
+                    editNama.setBackgroundResource(R.drawable.form_edit);
                 }
             }
         });
@@ -63,10 +60,14 @@ public class NamaActivity extends AppCompatActivity {
 
             if (editNama.getText().toString().isEmpty()) {
                 errorTextView.setVisibility(View.VISIBLE);
+                editNama.setBackgroundResource(R.drawable.form_edit_error);
             } else {
+                editNama.setBackgroundResource(R.drawable.form_edit);
                 errorTextView.setVisibility(View.GONE);
                 txtHasil.setText(String.format("Hello %s!\nPeserta VSGA", editNama.getText().toString()));
                 txtHasil.setVisibility(View.VISIBLE);
+                editNama.setText("");
+                editNama.clearFocus();
             }
         });
     }

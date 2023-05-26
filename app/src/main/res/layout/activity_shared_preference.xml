@@ -28,19 +28,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="12dp"
         android:background="@drawable/form_edit"
         android:hint="Username"
         android:padding="12dp"
         android:textColor="@color/black"
         android:textColorHint="@color/blueish_gray" />
 
+    <TextView
+        android:id="@+id/tv_username_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="4dp"
+        android:text="* Username must not be null"
+        android:textColor="@color/error"
+        android:visibility="gone" />
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/form_edit"
         android:hint="Password"
         android:inputType="textPassword"
@@ -48,11 +59,35 @@
         android:textColor="@color/black"
         android:textColorHint="@color/blueish_gray" />
 
+    <TextView
+        android:id="@+id/tv_invalid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="12dp"
+        android:text="* Incorrect username or password"
+        android:textColor="@color/error"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_password_error"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="4dp"
+        android:text="* Password must not be null and at least 8 characters long"
+        android:textColor="@color/error"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/btn_selector"
         android:padding="12dp"
         android:text="Login"
