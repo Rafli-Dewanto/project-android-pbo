@@ -6,15 +6,15 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <Button
+    <ImageView
         android:id="@+id/btn_back"
-        android:layout_width="66dp"
-        android:layout_height="66dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="start"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/ic_back_arrow" />
+        android:src="@drawable/ic_back_arrow" />
 
     <ImageView
         android:layout_width="300dp"
