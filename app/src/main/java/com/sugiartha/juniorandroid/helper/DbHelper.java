@@ -1,20 +1,24 @@
 package com.sugiartha.juniorandroid.helper;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.sugiartha.juniorandroid.SQLiteActivity;
+import com.sugiartha.juniorandroid.model.Peserta;
+
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
-    static final String DATABASE_NAME = "digitaltalent.db";
+    static final String DATABASE_NAME = "digitalent.db";
 
-    public static final String TABLE_SQLite = "peserta";
+    public static final String TABLE_PESERTA = "peserta";
 
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_NAME = "name";
@@ -26,7 +30,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + TABLE_SQLite + " (" +
+        final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + TABLE_PESERTA + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_NAME + " TEXT NOT NULL, " +
                 COLUMN_ADDRESS + " TEXT NOT NULL);";
@@ -36,58 +40,64 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SQLite);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PESERTA);
         onCreate(db);
     }
 
-    public ArrayList<HashMap<String, String>> getAllData() {
-        ArrayList<HashMap<String, String>> wordList;
-        wordList = new ArrayList<HashMap<String, String>>();
-        String selectQuery = "SELECT * FROM " + TABLE_SQLite;
-        SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery(selectQuery, null);
+    public List<Peserta> getAllData() {
+        List<Peserta> listPeserta = new ArrayList<>();
+
+        final String QUERY = "SELECT * FROM " + TABLE_PESERTA;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(QUERY, null);
+
         if (cursor.moveToFirst()) {
             do {
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put(COLUMN_ID, cursor.getString(0));
-                map.put(COLUMN_NAME, cursor.getString(1));
-                map.put(COLUMN_ADDRESS, cursor.getString(2));
-                wordList.add(map);
+                int id = cursor.getInt(0);
+                String name = cursor.getString(1);
+                String address = cursor.getString(2);
+
+                Peserta newPeserta = new Peserta(id, name, address);
+                listPeserta.add(newPeserta);
             } while (cursor.moveToNext());
         }
 
-        Log.e("select sqlite ", "" + wordList);
-
-        database.close();
-        return wordList;
+        cursor.close();
+        db.close();
+        return listPeserta;
     }
 
-    public void insert(String name, String address) {
-        SQLiteDatabase database = this.getWritableDatabase();
-        String queryValues = "INSERT INTO " + TABLE_SQLite + " (name, address) " +
-                "VALUES ('" + name + "', '" + address + "')";
+    public boolean insert(Peserta peserta) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
 
-        Log.e("insert sqlite ", "" + queryValues);
-        database.execSQL(queryValues);
-        database.close();
+        cv.put(COLUMN_NAME, peserta.getName());
+        cv.put(COLUMN_ADDRESS, peserta.getAddress());
+
+        long insert = db.insert(TABLE_PESERTA, null, cv);
+        db.close();
+        return insert != -1;
     }
 
-    public void update(int id, String name, String address) {
-        SQLiteDatabase database = this.getWritableDatabase();
+    public void update(Peserta peserta) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
 
-        String updateQuery = "UPDATE " + TABLE_SQLite + " SET "
-                + COLUMN_NAME + "='" + name + "', "
-                + COLUMN_ADDRESS + "='" + address + "'"
-                + " WHERE " + COLUMN_ID + "=" + "'" + id + "'";
-        Log.e("update sqlite ", updateQuery);
-        database.execSQL(updateQuery);
-        database.close();
+        cv.put(COLUMN_NAME, peserta.getName());
+        cv.put(COLUMN_ADDRESS, peserta.getAddress());
+
+        String whereClause = COLUMN_ID + "=?";
+        String[] whereArgs = {String.valueOf(peserta.getId())};
+
+        db.update(TABLE_PESERTA, cv, whereClause, whereArgs);
+        db.close();
     }
 
     public void delete(int id) {
         SQLiteDatabase database = this.getWritableDatabase();
 
-        String updateQuery = "DELETE FROM " + TABLE_SQLite + " WHERE " + COLUMN_ID + "=" + "'" + id + "'";
+        String updateQuery = "DELETE FROM " + TABLE_PESERTA + " WHERE " + COLUMN_ID + "=" + "'" + id + "'";
         Log.e("update sqlite ", updateQuery);
         database.execSQL(updateQuery);
         database.close();
