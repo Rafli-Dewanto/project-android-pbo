@@ -1,7 +1,9 @@
 package com.sugiartha.juniorandroid;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.sugiartha.juniorandroid.helper.DbHelper;
 import com.sugiartha.juniorandroid.model.Peserta;
+import com.sugiartha.juniorandroid.utils.FormError;
 
 public class AddEditActivity extends AppCompatActivity {
 
@@ -54,8 +57,7 @@ public class AddEditActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                nameEditText.setBackgroundResource(R.drawable.form_edit);
-                nameTextViewError.setVisibility(View.GONE);
+                FormError.hideError(nameEditText, nameTextViewError);
             }
 
             @Override
@@ -72,8 +74,7 @@ public class AddEditActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                addressEditText.setBackgroundResource(R.drawable.form_edit);
-                addressTextViewError.setVisibility(View.GONE);
+                FormError.hideError(addressEditText, addressTextViewError);
             }
 
             @Override
@@ -134,16 +135,19 @@ public class AddEditActivity extends AppCompatActivity {
 
     // Menyimpan Data ke Database SQLite
     private void save() {
+        boolean isNameEmpty = nameEditText.getText().toString().isEmpty();
+        boolean isAddressEmpty = addressEditText.getText().toString().isEmpty();
         Peserta newPeserta = null;
         // error handling
-        if (String.valueOf(nameEditText.getText()).equals("") || String.valueOf(addressEditText.getText()).equals("")) {
-
-            if (nameEditText.getText().toString().equals("") && addressEditText.getText().toString().equals("")) {
-                showError(true, false);
-            } else showError(false, nameEditText.getText().toString().equals(""));
-
+        if (isNameEmpty || isAddressEmpty) {
+            if (isNameEmpty) {
+                FormError.showError(nameEditText, nameTextViewError);
+            }
+            if (isAddressEmpty) {
+                FormError.showError(addressEditText, addressTextViewError);
+            }
         } else {
-            // create an instance of peserta
+            // membuat instance peserta
             try {
                 newPeserta = new Peserta(-1, nameEditText.getText().toString(), addressEditText.getText().toString());
             } catch (Exception e) {
@@ -164,46 +168,53 @@ public class AddEditActivity extends AppCompatActivity {
 
     // Update data kedalam Database SQLite
     private void edit() {
+        String pesertaName = nameEditText.getText().toString();
+        String pesertaAddress = addressEditText.getText().toString();
+
         Peserta currentPeserta = null;
-        if (String.valueOf(nameEditText.getText()).equals("") || String.valueOf(addressEditText.getText()).equals("")) {
-
-            if (nameEditText.getText().toString().equals("") && addressEditText.getText().toString().equals("")) {
-                showError(true, false);
-            } else showError(false, nameEditText.getText().toString().equals(""));
-
+        if (pesertaName.isEmpty() || pesertaAddress.isEmpty()) {
+            if (pesertaName.isEmpty()) {
+                FormError.showError(nameEditText, nameTextViewError);
+            }
+            if (pesertaAddress.isEmpty()) {
+                FormError.showError(addressEditText, addressTextViewError);
+            }
         } else {
             try {
-                currentPeserta = new Peserta(Integer.parseInt(txt_id.getText().toString()), nameEditText.getText().toString(), addressEditText.getText().toString());
+                int pesertaId = Integer.parseInt(txt_id.getText().toString());
+                currentPeserta = new Peserta(pesertaId, pesertaName, pesertaAddress);
             } catch (Exception e) {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
 
             // insert data to db
             dbHelper = new DbHelper(AddEditActivity.this);
-            dbHelper.update(currentPeserta);
+            if (currentPeserta != null) {
+                dbHelper.update(currentPeserta);
+            } else {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+                alertDialogBuilder.setTitle("Error");
+
+                // set pesan dari dialog
+                alertDialogBuilder
+                        .setMessage("Oops something went wrong when editting existing data")
+                        .setIcon(R.drawable.ic_digitalent)
+                        .setNegativeButton("Cancel", (dialog, id) -> dialog.cancel());
+
+                // membuat alert dialog dari builder
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // menampilkan alert dialog
+                alertDialog.show();
+            }
             startSQLiteActivity();
         }
     }
 
-    private void showError(
-            boolean nameAndAddress,
-            boolean username
-    ) {
-        if (nameAndAddress) {
-            nameEditText.setBackgroundResource(R.drawable.form_edit_error);
-            nameTextViewError.setVisibility(View.VISIBLE);
-            addressEditText.setBackgroundResource(R.drawable.form_edit_error);
-            addressTextViewError.setVisibility(View.VISIBLE);
-        } else if (username) {
-            nameEditText.setBackgroundResource(R.drawable.form_edit_error);
-            nameTextViewError.setVisibility(View.VISIBLE);
-        } else {
-            addressEditText.setBackgroundResource(R.drawable.form_edit_error);
-            addressTextViewError.setVisibility(View.VISIBLE);
-        }
-    }
 
-    private void startSQLiteActivity(){
+
+    private void startSQLiteActivity() {
         Intent i = new Intent(AddEditActivity.this, SQLiteActivity.class);
         startActivity(i);
         finish();

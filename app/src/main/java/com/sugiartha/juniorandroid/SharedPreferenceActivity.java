@@ -10,9 +10,11 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.sugiartha.juniorandroid.utils.FormError;
+
+import java.util.Objects;
 
 public class SharedPreferenceActivity extends AppCompatActivity {
 
@@ -50,14 +52,15 @@ public class SharedPreferenceActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                usernameEditText.setBackgroundResource(R.drawable.form_edit);
-                usernameErrorTextView.setVisibility(View.GONE);
+                FormError.hideError(usernameEditText, usernameErrorTextView);
                 invalidErrorTextView.setVisibility(View.GONE);
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                if (editable.toString().length() == 0) {
+                    FormError.showError(usernameEditText, usernameErrorTextView);
+                }
             }
         });
 
@@ -69,44 +72,44 @@ public class SharedPreferenceActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                passwordEditText.setBackgroundResource(R.drawable.form_edit);
-                passwordErrorTextView.setVisibility(View.GONE);
+                FormError.hideError(passwordEditText, passwordErrorTextView);
                 invalidErrorTextView.setVisibility(View.GONE);
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                if (editable.toString().length() == 0) {
+                    FormError.showError(passwordEditText, passwordErrorTextView);
+                }
             }
         });
 
 
         masuk.setOnClickListener(v -> {
-            String uname = usernameEditText.getText().toString();
-            String pw = passwordEditText.getText().toString();
+            String uname = Objects.requireNonNull(usernameEditText.getText()).toString();
+            String pw = Objects.requireNonNull(passwordEditText.getText()).toString();
 
-            if (uname.length() == 0 || pw.equals("")) {
+            boolean isUsernameEmpty = uname.isEmpty();
+            boolean isPasswordEmpty = pw.isEmpty();
 
-                if (uname.length() == 0 && pw.equals("")) {
-                    usernameEditText.setBackgroundResource(R.drawable.form_edit_error);
-                    usernameErrorTextView.setVisibility(View.VISIBLE);
-
-                    passwordEditText.setBackgroundResource(R.drawable.form_edit_error);
-                    passwordErrorTextView.setVisibility(View.VISIBLE);
-                    return;
-                } else if (pw.equals("")) {
-                    passwordEditText.setBackgroundResource(R.drawable.form_edit_error);
-                    passwordErrorTextView.setVisibility(View.VISIBLE);
-                    return;
+            if (isUsernameEmpty || isPasswordEmpty) {
+                if (isUsernameEmpty) {
+                    FormError.showError(usernameEditText, usernameErrorTextView);
                 } else {
-                    usernameEditText.setBackgroundResource(R.drawable.form_edit_error);
-                    usernameErrorTextView.setVisibility(View.VISIBLE);
-                    return;
+                    FormError.hideError(usernameEditText, usernameErrorTextView);
                 }
 
+                if (isPasswordEmpty) {
+                    FormError.showError(passwordEditText, passwordErrorTextView);
+                } else {
+                    FormError.hideError(passwordEditText, passwordErrorTextView);
+                }
+                return;
             }
 
             if (uname.equals("android") && pw.equals("12345678")) {
+                FormError.hideError(usernameEditText, usernameErrorTextView);
+                FormError.hideError(passwordEditText, passwordErrorTextView);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("username", uname);
                 editor.putString("password", pw);
@@ -114,8 +117,12 @@ public class SharedPreferenceActivity extends AppCompatActivity {
                 intent = new Intent(SharedPreferenceActivity.this, DetailSharedPreferenceActivity.class);
                 startActivity(intent);
             } else {
+                FormError.showError(usernameEditText);
+                FormError.showError(passwordEditText);
                 invalidErrorTextView.setVisibility(View.VISIBLE);
             }
         });
     }
+
+
 }
