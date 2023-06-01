@@ -9,7 +9,9 @@ import androidx.core.app.ActivityCompat;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -32,12 +34,14 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.tapadoo.alerter.Alerter;
 
 public class GPS extends AppCompatActivity {
     // initializing
     // FusedLocationProviderClient
     // object
     FusedLocationProviderClient mFusedLocationClient;
+    Button getLocationButton;
 
     // Initializing other items
     // from layout file
@@ -54,10 +58,16 @@ public class GPS extends AppCompatActivity {
         longitudeTextView = findViewById(R.id.tv_longitude);
         backArrowButton = findViewById(R.id.btn_back);
 
+        latitudeTextView.setVisibility(View.GONE);
+        longitudeTextView.setVisibility(View.GONE);
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        Button getLocationButton = findViewById(R.id.btn_get_location);
-        getLocationButton.setOnClickListener(v -> getLastLocation());
+        getLocationButton = findViewById(R.id.btn_get_location);
+
+        getLocationButton.setOnClickListener(v -> {
+            getLastLocation();
+        });
 
         backArrowButton.setOnClickListener(v -> {
             Intent i = new Intent(GPS.this, MainActivity.class);
@@ -71,6 +81,7 @@ public class GPS extends AppCompatActivity {
     private void getLastLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
+                showGettingLocationAlert();
 
                 // getting last
                 // location from
@@ -85,6 +96,11 @@ public class GPS extends AppCompatActivity {
                         } else {
                             latitudeTextView.setText("Latitude: " + location.getLatitude());
                             longitudeTextView.setText("Longitude: " + location.getLongitude());
+                            new Handler().postDelayed(() -> {
+                                getLocationButton.setEnabled(true);
+                                latitudeTextView.setVisibility(View.VISIBLE);
+                                longitudeTextView.setVisibility(View.VISIBLE);
+                            }, 3000);
                         }
                     }
                 });
@@ -157,11 +173,16 @@ public class GPS extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (checkPermissions()) {
-            getLastLocation();
+    private void showGettingLocationAlert() {
+        if (latitudeTextView.getVisibility() == View.GONE && longitudeTextView.getVisibility() == View.GONE) {
+            Alerter.create(GPS.this)
+                    .setTitle("Getting Location...")
+                    .setBackgroundColorRes(R.color.colorPrimary)
+                    .enableProgress(true)
+                    .show();
+            getLocationButton.setEnabled(false);
+        } else {
+            Alerter.clearCurrent(GPS.this);
         }
     }
 }
