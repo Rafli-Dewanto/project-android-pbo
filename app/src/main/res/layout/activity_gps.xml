@@ -49,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:visibility="gone"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/colorPrimary" />
 
@@ -57,6 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:visibility="gone"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/colorPrimary" />
 
