@@ -11,3 +11,81 @@
 /build
 /captures
 .externalNativeBuild
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log/OS Files
+*.log
+
+# Android Studio generated files and folders
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+output.json
+
+# IntelliJ
+*.iml
+.idea/
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
+
+# Android Profiling
+*.hprof
+# Built application files
+*.apk
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+build/
+captures/
+local.properties
+
+# Gradle files
+.gradle/
+.gradle/
+build/
+
+# Android Studio files
+.idea/
+.gradle/
+**/out/
+
+# Native build output
+obj/
+libs/
+
+# Proguard files
+proguard/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log Files
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
