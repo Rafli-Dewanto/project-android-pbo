@@ -48,18 +48,26 @@
         android:id="@+id/tv_latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="30dp"
-        android:visibility="gone"
         android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/colorPrimary" />
+        android:textAlignment="textStart"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="10dp"
-        android:visibility="gone"
         android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/colorPrimary" />
+        android:textAlignment="textStart"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone" />
 
 </LinearLayout>
