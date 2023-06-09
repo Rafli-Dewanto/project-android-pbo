@@ -9,7 +9,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.sugiartha.juniorandroid.adapter.Adapter;
 import com.sugiartha.juniorandroid.helper.DbHelper;
-import com.sugiartha.juniorandroid.model.Data;
+import com.sugiartha.juniorandroid.model.Peserta;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,9 +28,9 @@ public class SQLiteActivity extends AppCompatActivity {
 
     ListView listView;
     AlertDialog.Builder dialog;
-    List<Data> itemList = new ArrayList<Data>();
+    List<Peserta> itemList;
     Adapter adapter;
-    DbHelper SQLite = new DbHelper(this);
+    DbHelper SQLite;
 
     public static final String TAG_ID = "id";
     public static final String TAG_NAME = "name";
@@ -44,19 +44,18 @@ public class SQLiteActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Tambah SQLite
-        SQLite = new DbHelper(getApplicationContext());
+        SQLite = new DbHelper(SQLiteActivity.this);
 
         //Tambah List View
-        listView = (ListView) findViewById(R.id.list_view);
+        listView = findViewById(R.id.list_view);
+        itemList = new ArrayList<>();
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Tambah Intent untuk pindah ke halaman Add dan Edit
-                Intent intent = new Intent(SQLiteActivity.this, AddEditActivity.class);
-                startActivity(intent);
-            }
+
+        fab.setOnClickListener(view -> {
+            //Tambah Intent untuk pindah ke halaman Add dan Edit
+            Intent intent = new Intent(SQLiteActivity.this, AddEditActivity.class);
+            startActivity(intent);
         });
 
         //Tambah adapter dan listview
@@ -70,7 +69,7 @@ public class SQLiteActivity extends AppCompatActivity {
             public boolean onItemLongClick(final AdapterView<?> parent, View view,
                                            final int position, long id) {
                 // TODO Auto-generated method stub
-                final String idx = itemList.get(position).getId();
+                final int idx = itemList.get(position).getId();
                 final String name = itemList.get(position).getName();
                 final String address = itemList.get(position).getAddress();
 
@@ -88,10 +87,10 @@ public class SQLiteActivity extends AppCompatActivity {
                                 intent.putExtra(TAG_ID, idx);
                                 intent.putExtra(TAG_NAME, name);
                                 intent.putExtra(TAG_ADDRESS, address);
-                                startActivity(intent);
+                                startActivityForResult(intent, 1);
                                 break;
                             case 1:
-                                SQLite.delete(Integer.parseInt(idx));
+                                SQLite.delete(idx);
                                 itemList.clear();
                                 getAllData();
                                 break;
@@ -105,18 +104,18 @@ public class SQLiteActivity extends AppCompatActivity {
     }
 
     private void getAllData() {
-        ArrayList<HashMap<String, String>> row = SQLite.getAllData();
+        List<Peserta> row = SQLite.getAllData();
 
         for (int i = 0; i < row.size(); i++) {
-            String id = row.get(i).get(TAG_ID);
-            String poster = row.get(i).get(TAG_NAME);
-            String title = row.get(i).get(TAG_ADDRESS);
+            int id = row.get(i).getId();
+            String name = row.get(i).getName();
+            String address = row.get(i).getAddress();
 
-            Data data = new Data();
+            Peserta data = new Peserta();
 
             data.setId(id);
-            data.setName(poster);
-            data.setAddress(title);
+            data.setName(name);
+            data.setAddress(address);
 
             itemList.add(data);
         }

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,31 +8,74 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        android:text="Luas dan Keliling Lingkaran"/>
+        android:layout_gravity="center"
+        android:layout_marginVertical="40dp"
+        android:fontFamily="@font/poppins_regular"
+        android:paddingTop="20dp"
+        android:paddingBottom="40dp"
+        android:text="Luas &amp; Keliling Lingkaran"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_radius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="70dp"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:hint="Masukkan jari-jari lingkaran"
+        android:inputType="numberDecimal" />
 
     <TextView
+        android:id="@+id/tv_error"
         android:layout_width="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="75dp"
+        android:textColor="@color/error"
         android:layout_height="wrap_content"
-        android:paddingTop="40dp"
-        android:text="Masukkan Jari-Jari Lingkaran" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Input Jari-Jari"
-        android:id="@+id/jari2"/>
+        android:visibility="gone"
+        android:text="* Harap masukkan angka"
+        android:layout_marginLeft="75dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_submit"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:text="HITUNG"
-        android:id="@+id/hitung"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_selector"
+        android:fontFamily="@font/poppins_semibold"
+        android:paddingVertical="14dp"
+        android:text="Calculate"
+        android:textColor="@color/colorBackground" />
 
     <TextView
+        android:id="@+id/tv_luas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Luas dan Keliling"
-        android:id="@+id/nilai"/>
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Luas:"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_keliling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Keliling:"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:visibility="gone" />
 
 </LinearLayout>

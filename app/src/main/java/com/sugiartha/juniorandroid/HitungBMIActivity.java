@@ -27,6 +27,7 @@ public class HitungBMIActivity extends AppCompatActivity {
         btnCekBMI = findViewById(R.id.btnCekBMI); //Menyambungkan elemen dengan id btnCekBMI yang ada di activity_main.xml kesini
 
         //btnCekBMI.setOnClickListener dibawah ini maksudnya adalah untuk me-listen (mengamati) btnCekBMI apakah ada click, apabila ada click, maka code didalamnya akan dieksekusi
+
         btnCekBMI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

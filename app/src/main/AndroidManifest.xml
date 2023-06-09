@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -24,7 +25,8 @@
             android:exported="false" />
         <activity
             android:name=".SharedPreferenceActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".StorageActivity"
             android:exported="false" />
@@ -42,8 +44,11 @@
             android:exported="false" />
         <activity
             android:name=".GPS"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"
             android:exported="false" />
-        <activity android:name=".AddEditActivity" />
+        <activity
+            android:name=".AddEditActivity"
+            android:exported="false" />
         <activity
             android:name=".SQLiteActivity"
             android:label="@string/title_activity_sqlite"
@@ -52,7 +57,10 @@
         <activity android:name=".PegawaiTampilActivity" />
         <activity android:name=".PegawaiMainActivity" />
         <activity android:name=".ListActivity" />
-        <activity android:name=".ListViewActivity" />
+        <activity
+            android:name=".ListViewActivity"
+            android:label="List Negara"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".HitungBMIActivity" />
         <activity
             android:name=".CalculatorActivity"
@@ -62,7 +70,9 @@
         <activity android:name=".BilanganActivity" />
         <activity android:name=".KalkulatorActivity" />
         <activity android:name=".LingkaranActivity" />
-        <activity android:name=".NamaActivity" />
+        <activity
+            android:name=".NamaActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

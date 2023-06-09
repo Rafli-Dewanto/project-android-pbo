@@ -9,16 +9,16 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.sugiartha.juniorandroid.R;
-import com.sugiartha.juniorandroid.model.Data;
+import com.sugiartha.juniorandroid.model.Peserta;
 
 import java.util.List;
 
 public class Adapter extends BaseAdapter {
-    private Activity activity;
+    private final Activity activity;
     private LayoutInflater inflater;
-    private List<Data> items;
+    private final List<Peserta> items;
 
-    public Adapter(Activity activity, List<Data> items) {
+    public Adapter(Activity activity, List<Peserta> items) {
         this.activity = activity;
         this.items = items;
     }
@@ -40,23 +40,26 @@ public class Adapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        if (inflater == null) {
+            inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
 
-        if (inflater == null)
-            inflater = (LayoutInflater) activity
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        if (convertView == null)
+        if (convertView == null) {
             convertView = inflater.inflate(R.layout.list_row, null);
+        }
 
-        TextView id = (TextView) convertView.findViewById(R.id.id);
-        TextView name = (TextView) convertView.findViewById(R.id.name);
-        TextView address = (TextView) convertView.findViewById(R.id.address);
+        TextView idTextView = convertView.findViewById(R.id.id);
+        TextView nameTextView = convertView.findViewById(R.id.name);
+        TextView addressTextView = convertView.findViewById(R.id.address);
 
-        Data data = items.get(position);
+        Peserta data = items.get(position);
 
-        id.setText(data.getId());
-        name.setText(data.getName());
-        address.setText(data.getAddress());
+        // Convert the ID to a string before setting it as the text of the idTextView
+        String idString = String.valueOf(data.getId());
+
+        idTextView.setText(idString);
+        nameTextView.setText(data.getName());
+        addressTextView.setText(data.getAddress());
 
         return convertView;
     }
