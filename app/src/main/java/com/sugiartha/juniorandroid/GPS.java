@@ -32,17 +32,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class GPS extends AppCompatActivity implements LocationListener {
-    // initializing
-    // FusedLocationProviderClient
-    // object
     FusedLocationProviderClient mFusedLocationClient;
     Button getLocationButton;
 
-    // Initializing other items
-    // from layout file
     TextView latitudeTextView, longitudeTextView;
     ImageView backArrowButton;
-    int PERMISSION_ID = 44;
     private LocationManager locationManager;
 
     @Override
@@ -61,15 +55,14 @@ public class GPS extends AppCompatActivity implements LocationListener {
 
         getLocationButton = findViewById(R.id.btn_get_location);
 
-        if (ContextCompat.checkSelfPermission(GPS.this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+        if (isPermissionGranted()) {
             ActivityCompat.requestPermissions(GPS.this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION
             }, 100);
         }
 
         getLocationButton.setOnClickListener(v -> {
-            isLoading();
+            handleGPSLoadingState();
             getLocation();
         });
 
@@ -91,7 +84,7 @@ public class GPS extends AppCompatActivity implements LocationListener {
     }
 
 
-    private void isLoading() {
+    private void handleGPSLoadingState() {
         if (latitudeTextView.getVisibility() == View.GONE && longitudeTextView.getVisibility() == View.GONE) {
             getLocationButton.setEnabled(false);
             Alerter.create(GPS.this)
@@ -110,14 +103,14 @@ public class GPS extends AppCompatActivity implements LocationListener {
         String latitude = String.valueOf(location.getLatitude());
         String longitude = String.valueOf(location.getLongitude());
 
-        latitudeTextView.setText(String.format("Current Latitude: %s", latitude));
-        longitudeTextView.setText(String.format("Current Longitude: %s", longitude));
+        latitudeTextView.setText(String.format("Latitude: %s", latitude));
+        longitudeTextView.setText(String.format("Longitude: %s", longitude));
         getLocationButton.setEnabled(true);
 
         new Handler().postDelayed(() -> {
             longitudeTextView.setVisibility(View.VISIBLE);
             latitudeTextView.setVisibility(View.VISIBLE);
-            isLoading();
+            handleGPSLoadingState();
             Alerter.create(GPS.this)
                     .setTitle("Success")
                     .setText("Location acquired")
@@ -138,5 +131,9 @@ public class GPS extends AppCompatActivity implements LocationListener {
         } catch (Exception e) {
             Log.e("gps", e.getMessage());
         }
+    }
+
+    private boolean isPermissionGranted() {
+        return ContextCompat.checkSelfPermission(GPS.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED;
     }
 }
