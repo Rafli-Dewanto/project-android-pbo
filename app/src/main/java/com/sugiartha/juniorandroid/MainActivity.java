@@ -3,6 +3,7 @@ package com.sugiartha.juniorandroid;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.material.carousel.CarouselLayoutManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -14,6 +15,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.sugiartha.juniorandroid.adapter.CarouselAdapter;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -21,19 +23,28 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     LinearLayout btnNama, btnKalkulator, btnLingkaran, btnBilangan, btnLogin, btnSignup, btnCalculator, btnBMI, btnListview, btnList, btnSqlite, btnMysql, btngps, btnseluler, btnsensor, btncatatan, btninternalexternal, btnstorage;
 
-    CarouselView carouselView;
-    int[] sampleImages = {R.drawable.gambar_1, R.drawable.gambar_2, R.drawable.gambar_3};
+    CarouselAdapter carouselAdapter;
+    RecyclerView carouselRecyclerView;
+    private final List<Integer> sampleImages = Arrays.asList(
+            R.drawable.gambar_1,
+            R.drawable.gambar_2,
+            R.drawable.gambar_3
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +52,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
-        carouselView = findViewById(R.id.carouselView);
-        carouselView.setPageCount(sampleImages.length);
-        carouselView.setImageListener(imageListener);
+//        carouselView = findViewById(R.id.carouselView);
+//        carouselView.setPageCount(sampleImages.length);
+//        carouselView.setImageListener(imageListener);
 
         btnNama = findViewById(R.id.nama);
         btnKalkulator = findViewById(R.id.kalkulator);
@@ -63,6 +74,15 @@ public class MainActivity extends AppCompatActivity
         btncatatan = findViewById(R.id.catatan);
         btninternalexternal = findViewById(R.id.internalexternal);
         btnstorage = findViewById(R.id.storage);
+
+        // Carousel Adapter
+        carouselAdapter = new CarouselAdapter(sampleImages);
+        carouselRecyclerView = findViewById(R.id.carouselView);
+        carouselRecyclerView.setLayoutManager(new CarouselLayoutManager());
+        carouselRecyclerView.setAdapter(carouselAdapter);
+
+
+
 
         btnNama.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -230,12 +250,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    ImageListener imageListener = new ImageListener() {
-        @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-            imageView.setImageResource(sampleImages[position]);
-        }
-    };
 
     @Override
     public void onBackPressed() {
