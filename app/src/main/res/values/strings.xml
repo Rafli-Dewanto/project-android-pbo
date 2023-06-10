@@ -14,4 +14,7 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_sqlite">SQLiteActivity</string>
+
+    <string name="username">User</string>
+    <string name="username_email">user@email.com</string>
 </resources>
