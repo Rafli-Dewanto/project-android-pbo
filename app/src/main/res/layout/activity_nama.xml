@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".NamaActivity">
 
+    <com.sugiartha.juniorandroid.components.DynamicAppBar
+        android:id="@+id/dynamic_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,12 +43,12 @@
         android:id="@+id/tv_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
         android:layout_gravity="start"
-        android:textColor="@color/error"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
         android:text="* Name must not be null"
-        android:visibility="gone"
-        android:layout_marginLeft="60dp" />
+        android:textColor="@color/error"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btnOk"
@@ -59,11 +65,11 @@
         android:id="@+id/txtHasil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:visibility="gone"
-        android:fontFamily="@font/poppins_semibold"
         android:layout_gravity="center"
-        android:textColor="@color/colorAccent" />
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/colorAccent"
+        android:visibility="gone" />
 
 
 </LinearLayout>
