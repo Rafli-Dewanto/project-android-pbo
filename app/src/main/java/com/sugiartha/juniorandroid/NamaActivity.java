@@ -3,6 +3,7 @@ package com.sugiartha.juniorandroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,23 +12,35 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.sugiartha.juniorandroid.components.DynamicAppBar;
 
 public class NamaActivity extends AppCompatActivity {
 
     Button btnOk;
     EditText editNama;
     TextView txtHasil, errorTextView;
+    DynamicAppBar dynamicAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nama);
 
-        btnOk = (Button) findViewById(R.id.btnOk);
-        editNama = (EditText) findViewById(R.id.editNama);
-        txtHasil = (TextView) findViewById(R.id.txtHasil);
-        errorTextView = (TextView) findViewById(R.id.tv_error);
+        btnOk = findViewById(R.id.btnOk);
+        editNama = findViewById(R.id.editNama);
+        txtHasil = findViewById(R.id.txtHasil);
+        errorTextView = findViewById(R.id.tv_error);
+
+        dynamicAppBar = findViewById(R.id.dynamic_app_bar);
+        dynamicAppBar.setTitle("Nama");
+        dynamicAppBar.setBackButtonClickListener(v -> {
+            Intent i = new Intent(NamaActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
+        });
 
 
         editNama.addTextChangedListener(new TextWatcher() {
