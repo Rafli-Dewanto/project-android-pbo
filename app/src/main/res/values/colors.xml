@@ -10,9 +10,25 @@
     <color name="colorDisabled">#72A0DF</color>
     <color name="colorBackground">#ffffff</color>
 
+    <!-- Tailwind Colors   -->
+    <color name="azure_50">#edfaff</color>
+    <color name="azure_100">#d6f2ff</color>
+    <color name="azure_200">#b5ebff</color>
+    <color name="azure_300">#83e0ff</color>
+    <color name="azure_400">#48ccff</color>
+    <color name="azure_500">#1eadff</color>
+    <color name="azure_600">#0690ff</color>
+    <color name="azure_700">@color/colorPrimary</color>
+    <color name="azure_800">#085ec5</color>
+    <color name="azure_900">#0d529b</color>
+    <color name="azure_950">#0e325d</color>
 
+    <!-- necessary colors -->
     <color name="black">#000</color>
+    <color name="white">#ffffff</color>
     <color name="error">#FF3737</color>
+    <color name="errorContainer">#F8DEDC</color>
+    <color name="warning">#E5A03B</color>
     <color name="success">#4CAF50</color>
     <color name="light_gray">#A0A0A0</color>
     <color name="very_light_gray">#EBEBEB</color>
