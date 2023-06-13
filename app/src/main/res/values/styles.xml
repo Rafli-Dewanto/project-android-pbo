@@ -24,4 +24,24 @@
         <item name="color">@color/colorPrimary</item>
     </style>
 
+    <style name="buttonPrimary">
+        <item name="android:background">@drawable/btn_selector</item>
+    </style>
+
+    <style name="buttonSecondary">
+        <item name="android:background">@drawable/btn_outlined_selector</item>
+    </style>
+
+    <style name="buttonTertiary">
+        <item name="android:background">@drawable/btn_gradient</item>
+    </style>
+
+    <style name="banner">
+        <item name="background">@drawable/banner</item>
+    </style>
+
+    <style name="bannerError">
+        <item name="background">@drawable/error_banner</item>
+    </style>
+
 </resources>
