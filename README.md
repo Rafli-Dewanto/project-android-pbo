@@ -24,15 +24,17 @@ These instructions will help you set up the project on your local machine for de
 ### Requirements
 
 - Android SDK version: 16 (minSdkVersion)
-- Target SDK version: 32 (targetSdkVersion)
-- Google Play Services Location library version: 20.0.0
+- Target SDK version: 33 (targetSdkVersion)
+- Google Play Services Location library version: 21.0.1
 - AndroidX libraries:
-  - androidx.appcompat:appcompat:1.1.0
-  - androidx.constraintlayout:constraintlayout:1.1.3
+  - androidx.appcompat:appcompat:1.6.1
+  - androidx.constraintlayout:constraintlayout:2.1.4
 - Third-party libraries:
   - CarouselView library version: 0.1.4
   - Dexter library version: 6.2.3
   - Flexbox Layout version: 3.0.0
+  - Alerter library version: 7.2.4
+  - Lottie android version: 6.0.0
 
 ### Installation
 
@@ -73,6 +75,8 @@ To contribute to the project, please follow the steps below:
 - [CarouselView library](https://github.com/sayyam/carouselview)
 - [Dexter library](https://github.com/Karumi/Dexter)
 - [Flexbox Layout](https://github.com/google/flexbox-layout)
+- [Alerter Library](https://github.com/Tapadoo/Alerter)
+- [Lottie Android](https://github.com/airbnb/lottie)
 
 ## License
 
