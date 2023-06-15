@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -16,18 +17,20 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_back_arrow" />
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
+        app:lottie_rawRes="@raw/maps_anim"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="50dp"
-        android:contentDescription="dts"
-        android:src="@drawable/ic_dts_no_bg" />
+        android:contentDescription="dts" />
 
     <TextView
         android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Lokasi GPS Sekarang"
         android:textColor="@color/black"
