@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sugiartha.juniorandroid.components.DynamicAppBar;
@@ -21,8 +23,11 @@ public class NamaActivity extends AppCompatActivity {
 
     Button btnOk;
     EditText editNama;
+    LinearLayout banner;
     TextView txtHasil, errorTextView;
     DynamicAppBar dynamicAppBar;
+    Animation slideInAnimation;
+    ImageView closeImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,8 @@ public class NamaActivity extends AppCompatActivity {
         editNama = findViewById(R.id.editNama);
         txtHasil = findViewById(R.id.txtHasil);
         errorTextView = findViewById(R.id.tv_error);
+        banner = findViewById(R.id.ll_banner);
+        closeImageView = findViewById(R.id.iv_close);
 
         dynamicAppBar = findViewById(R.id.dynamic_app_bar);
         dynamicAppBar.setTitle("Nama");
@@ -41,6 +48,11 @@ public class NamaActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         });
+
+        closeImageView.setOnClickListener(v -> banner.setVisibility(View.GONE));
+
+        slideInAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_in);
+
 
 
         editNama.addTextChangedListener(new TextWatcher() {
@@ -64,13 +76,7 @@ public class NamaActivity extends AppCompatActivity {
         });
 
         btnOk.setOnClickListener(v -> {
-            InputMethodManager imm = null;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            }
-            assert imm != null;
-            imm.hideSoftInputFromWindow(editNama.getWindowToken(), 0);
-
+            hideKeyboard();
             if (editNama.getText().toString().isEmpty()) {
                 errorTextView.setVisibility(View.VISIBLE);
                 editNama.setBackgroundResource(R.drawable.form_edit_error);
@@ -78,10 +84,21 @@ public class NamaActivity extends AppCompatActivity {
                 editNama.setBackgroundResource(R.drawable.form_edit);
                 errorTextView.setVisibility(View.GONE);
                 txtHasil.setText(String.format("Hello %s!\nPeserta VSGA", editNama.getText().toString()));
+                banner.setVisibility(View.VISIBLE);
                 txtHasil.setVisibility(View.VISIBLE);
+                banner.startAnimation(slideInAnimation);
                 editNama.setText("");
                 editNama.clearFocus();
             }
         });
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        }
+        assert imm != null;
+        imm.hideSoftInputFromWindow(editNama.getWindowToken(), 0);
     }
 }
