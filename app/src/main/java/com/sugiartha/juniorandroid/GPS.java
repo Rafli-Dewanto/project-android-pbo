@@ -1,6 +1,7 @@
 package com.sugiartha.juniorandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import android.annotation.SuppressLint;
@@ -13,6 +14,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,8 +39,10 @@ public class GPS extends AppCompatActivity implements LocationListener {
     Button getLocationButton;
 
     TextView latitudeTextView, longitudeTextView;
-    ImageView backArrowButton;
-    private LocationManager locationManager;
+    ImageView backArrowButton, closeBannerImageView;
+    Animation slideInToTop;
+    ConstraintLayout banner;
+    @SuppressWarnings("FieldCanBeLocal") private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,8 @@ public class GPS extends AppCompatActivity implements LocationListener {
         latitudeTextView = findViewById(R.id.tv_latitude);
         longitudeTextView = findViewById(R.id.tv_longitude);
         backArrowButton = findViewById(R.id.btn_back);
+        closeBannerImageView = findViewById(R.id.iv_close);
+        closeBannerImageView.setOnClickListener(v -> banner.setVisibility(View.GONE));
 
         latitudeTextView.setVisibility(View.GONE);
         longitudeTextView.setVisibility(View.GONE);
@@ -54,6 +61,8 @@ public class GPS extends AppCompatActivity implements LocationListener {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         getLocationButton = findViewById(R.id.btn_get_location);
+        slideInToTop = AnimationUtils.loadAnimation(this, R.anim.slide_in_to_top);
+        banner = findViewById(R.id.cl_banner);
 
         if (isPermissionGranted()) {
             ActivityCompat.requestPermissions(GPS.this, new String[]{
@@ -110,6 +119,8 @@ public class GPS extends AppCompatActivity implements LocationListener {
         new Handler().postDelayed(() -> {
             longitudeTextView.setVisibility(View.VISIBLE);
             latitudeTextView.setVisibility(View.VISIBLE);
+            banner.setVisibility(View.VISIBLE);
+            banner.startAnimation(slideInToTop);
             handleGPSLoadingState();
             Alerter.create(GPS.this)
                     .setTitle("Success")
