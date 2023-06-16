@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -18,13 +18,13 @@
         android:src="@drawable/ic_back_arrow" />
 
     <com.airbnb.lottie.LottieAnimationView
-        app:lottie_rawRes="@raw/maps_anim"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="50dp"
-        android:contentDescription="dts" />
+        android:contentDescription="dts"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/maps_anim" />
 
     <TextView
         android:id="@+id/location"
@@ -44,34 +44,63 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/btn_outlined_selector"
         android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/colorPrimary"
         android:text="Get Location"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/tv_latitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/poppins_bold"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorPrimary"
-        android:visibility="gone" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_banner"
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/banner"
+        android:paddingHorizontal="20dp"
+        android:visibility="gone">
 
-    <TextView
-        android:id="@+id/tv_longitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins_bold"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorPrimary"
-        android:visibility="gone" />
+        <ImageView
+            android:id="@+id/iv_info"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/vector_info"
+            app:layout_constraintEnd_toStartOf="@id/tv_latitude"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="11dp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/colorPrimary"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/iv_info"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/colorPrimary"
+            android:visibility="gone"
+            app:layout_constraintHorizontal_bias="0.277"
+            app:layout_constraintStart_toStartOf="@id/tv_latitude"
+            app:layout_constraintTop_toBottomOf="@id/tv_latitude" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/vector_close"
+            android:text="Longitude: -122.084"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
