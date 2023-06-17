@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -17,6 +18,7 @@ public class SplashActivity extends AppCompatActivity {
     Handler handler;
     LottieAnimationView animationView;
     TextView title;
+    ImageView digitalent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         animationView = findViewById(R.id.animation);
         title = findViewById(R.id.tv_digitalent);
+        digitalent = findViewById(R.id.iv_digitalent);
 
         animationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
@@ -32,6 +35,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+                digitalent.setColorFilter(getResources().getColor(R.color.azure_950));
                 title.setTextColor(getResources().getColor(R.color.white));
             }
 

@@ -16,6 +16,7 @@
         app:lottie_rawRes="@raw/splash_screen_anim" />
 
     <ImageView
+        android:id="@+id/iv_digitalent"
         android:layout_gravity="center"
         android:layout_marginBottom="100dp"
         android:layout_width="90dp"
