@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
 import java.text.DecimalFormat;
 
 public class LingkaranActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class LingkaranActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lingkaran);
+        ActivityUtils.setAppBar(LingkaranActivity.this, MainActivity.class, "Lingkaran");
 
         submitButton = findViewById(R.id.btn_submit);
         radiusEditText = findViewById(R.id.et_radius);
