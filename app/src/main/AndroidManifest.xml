@@ -59,9 +59,8 @@
         <activity android:name=".PegawaiMainActivity" />
         <activity android:name=".ListActivity" />
         <activity
-            android:name=".ListViewActivity"
-            android:label="List Negara"
-            android:parentActivityName=".MainActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".ListViewActivity" />
         <activity android:name=".HitungBMIActivity" />
         <activity
             android:name=".CalculatorActivity"
@@ -70,14 +69,15 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".BilanganActivity" />
         <activity android:name=".KalkulatorActivity" />
-        <activity android:name=".LingkaranActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".LingkaranActivity" />
         <activity
             android:name=".NamaActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
