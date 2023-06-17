@@ -5,26 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".StorageActivity">
 
-    <EditText
-        android:id="@+id/input_data"
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Masukan Data"
-        android:inputType="textPersonName" />
+        android:paddingBottom="50dp"
+        android:src="@drawable/logo_dts"/>
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/input_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Masukan Data"
+            android:inputType="textPersonName" />
 
+
+
+
+
+    </LinearLayout>
     <Button
         android:id="@+id/save_internal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Simpan ke Internal" />
+        android:backgroundTint="@color/light_gray"
+        android:background="@drawable/btn_selector"
+        android:text="INTERNAL"
+        android:textColor="@color/white"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_width="300dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="55dp"/>
 
     <Button
         android:id="@+id/save_external"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Simpan ke External" />
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="EXTERNAL"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/light_gray"
+        android:background="@drawable/btn_selector"/>
 
 </LinearLayout>
