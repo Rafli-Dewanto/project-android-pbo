@@ -10,6 +10,6 @@
     android:text="lorem"
     android:textColor="@color/black"
     android:fontFamily="@font/poppins_regular"
-    android:textSize="20sp"
+    android:textSize="14sp"
     android:paddingLeft="12dp"
     tools:ignore="RtlSymmetry" />
