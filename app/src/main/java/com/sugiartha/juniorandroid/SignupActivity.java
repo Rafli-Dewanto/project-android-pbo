@@ -2,6 +2,7 @@ package com.sugiartha.juniorandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sugiartha.juniorandroid.helper.AuthDao;
@@ -24,6 +26,7 @@ public class SignupActivity extends AppCompatActivity {
     Spinner spinner;
     String gender;
     EditText fullname, username, password;
+    TextView loginTextView;
     Auth user;
     Button submit;
     String hashedPassword;
@@ -39,6 +42,12 @@ public class SignupActivity extends AppCompatActivity {
         username = findViewById(R.id.et_username);
         password = findViewById(R.id.et_password);
         submit = findViewById(R.id.btn_signup);
+        loginTextView = findViewById(R.id.tv_login);
+        loginTextView.setOnClickListener(v -> {
+            Intent i = new Intent(SignupActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
+        });
 
         spinner = findViewById(R.id.spinner_id);
 

@@ -65,7 +65,9 @@
         <activity
             android:name=".CalculatorActivity"
             android:label="Kalkulator Advance" />
-        <activity android:name=".SignupActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".BilanganActivity" />
         <activity android:name=".KalkulatorActivity" />
