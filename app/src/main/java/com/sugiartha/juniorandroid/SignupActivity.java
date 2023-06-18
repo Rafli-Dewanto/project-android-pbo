@@ -2,6 +2,7 @@ package com.sugiartha.juniorandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,16 +64,12 @@ public class SignupActivity extends AppCompatActivity {
             user.setPassword(hashedPassword);
             // insert data
             dbHelper = new AuthDao(SignupActivity.this);
-            try {
-                boolean success = dbHelper.insert(user);
+            boolean success = dbHelper.insert(user);
 
-                if (success) {
-                    Toast.makeText(this, "berhasil signup", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT).show();
-                }
-            } catch (SQLiteException e) {
-                Log.e("SignUp Act", e.getMessage());
+            if (success) {
+                Toast.makeText(this, "berhasil signup", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "username already exists", Toast.LENGTH_SHORT).show();
             }
         });
     }

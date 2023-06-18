@@ -4,8 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.sugiartha.juniorandroid.model.Auth;
 
@@ -31,7 +35,7 @@ public class AuthDao extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         final String SQL_CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_FULLNAME + " TEXT NOT NULL, " +
+                COLUMN_FULLNAME + " TEXT NOT NULL UNIQUE, " +
                 COLUMN_USERNAME + " TEXT NOT NULL UNIQUE, " +
                 COLUMN_PASSWORD + " TEXT NOT NULL, " +
                 COLUMN_GENDER + " TEXT NOT NULL);";
@@ -46,18 +50,29 @@ public class AuthDao extends SQLiteOpenHelper {
     }
 
     public boolean insert(Auth user) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
+        try (SQLiteDatabase db = this.getWritableDatabase()) {
+            ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_FULLNAME, user.getFullname());
-        cv.put(COLUMN_USERNAME, user.getUsername());
-        cv.put(COLUMN_GENDER, user.getGender());
-        cv.put(COLUMN_PASSWORD, user.getPassword());
+            cv.put(COLUMN_FULLNAME, user.getFullname());
+            cv.put(COLUMN_USERNAME, user.getUsername());
+            cv.put(COLUMN_GENDER, user.getGender());
+            cv.put(COLUMN_PASSWORD, user.getPassword());
 
-        long insert = db.insert(TABLE_USER, null, cv);
-        db.close();
-        return insert != -1;
+            long insert = db.insertOrThrow(TABLE_USER, null, cv);
+            return insert != -1;
+        } catch (SQLiteException e) {
+            if (e instanceof SQLiteConstraintException) {
+                Log.e("AuthDao", "Constraint violation: " + e.getMessage());
+            } else {
+                Log.e("AuthDao", "SQLException: " + e.getMessage());
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
+
 
     @SuppressLint("Range")
     public Auth authenticate(Auth payload) {
