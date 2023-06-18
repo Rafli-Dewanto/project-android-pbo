@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.sugiartha.juniorandroid.adapter.Adapter;
 import com.sugiartha.juniorandroid.helper.DbHelper;
 import com.sugiartha.juniorandroid.model.Peserta;
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -40,8 +41,7 @@ public class SQLiteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sqlite);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ActivityUtils.setAppBar(SQLiteActivity.this, MainActivity.class, "Peserta VSGA");
 
         //Tambah SQLite
         SQLite = new DbHelper(SQLiteActivity.this);
