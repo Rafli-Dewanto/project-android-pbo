@@ -2,43 +2,78 @@ package com.sugiartha.juniorandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.sugiartha.juniorandroid.helper.AuthDao;
+import com.sugiartha.juniorandroid.model.Auth;
+
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class SignupActivity extends AppCompatActivity {
 
-    Spinner spin;
-    String spin_val;
-    String[] gender = { "Laki-Laki", "Perempuan" };
-    //array of strings used to populate the spinner
+    Spinner spinner;
+    String gender;
+    EditText fullname, username, password;
+    Auth user;
+    Button submit;
+    String hashedPassword;
+    AuthDao dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        user = new Auth();
+        dbHelper = new AuthDao(SignupActivity.this);
+        fullname = findViewById(R.id.et_fullname);
+        username = findViewById(R.id.et_username);
+        password = findViewById(R.id.et_password);
+        submit = findViewById(R.id.btn_signup);
 
-        spin = (Spinner) findViewById(R.id.spinner_id);//fetching view's id
-        // Register a callback to be invoked when an item in this AdapterView has been selected
-        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner = findViewById(R.id.spinner_id);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gender, R.layout.spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int  position, long id) {
-                // TODO Auto-generated method stub
-                spin_val = gender[position];//saving the value selected
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                user.setGender(adapterView.getSelectedItem().toString());
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-            }
-        });//setting array adaptors to spinners
-        // ArrayAdapter is a BaseAdapter that is backed by an array of arbitrary objects
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-        ArrayAdapter<String> spin_adapter = new ArrayAdapter<String>(SignupActivity.this, android.R.layout.simple_spinner_item, gender);
-        // setting adapters to spinners
-        spin.setAdapter(spin_adapter);
+            }
+        });
+
+        submit.setOnClickListener(v -> {
+            hashedPassword = BCrypt.withDefaults().hashToString(10, password.getText().toString().toCharArray());
+            user.setFullname(fullname.getText().toString());
+            user.setUsername(username.getText().toString());
+            user.setPassword(hashedPassword);
+            // insert data
+            dbHelper = new AuthDao(SignupActivity.this);
+            try {
+                boolean success = dbHelper.insert(user);
+
+                if (success) {
+                    Toast.makeText(this, "berhasil signup", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT).show();
+                }
+            } catch (SQLiteException e) {
+                Log.e("SignUp Act", e.getMessage());
+            }
+        });
     }
 }

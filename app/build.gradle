@@ -39,4 +39,5 @@ dependencies {
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.github.tapadoo:alerter:7.2.4'
     implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation group: 'at.favre.lib', name: 'bcrypt', version: '0.10.2'
 }
