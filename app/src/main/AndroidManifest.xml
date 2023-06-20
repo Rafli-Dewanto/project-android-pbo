@@ -39,10 +39,13 @@
             android:exported="false" />
         <activity
             android:name=".SensorActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".KoneksiActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".GPS"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"
