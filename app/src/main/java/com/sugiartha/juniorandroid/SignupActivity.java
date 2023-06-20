@@ -67,6 +67,13 @@ public class SignupActivity extends AppCompatActivity {
         });
 
         submit.setOnClickListener(v -> {
+            boolean usernameEmpty = username.getText().toString().isEmpty();
+            boolean fullnameEmpty = fullname.getText().toString().isEmpty();
+            boolean passwordEmpty = password.getText().toString().isEmpty();
+            if(usernameEmpty || fullnameEmpty || passwordEmpty){
+                Toast.makeText(this, "Isi semua data",Toast.LENGTH_SHORT).show();
+                return ;
+            }
             hashedPassword = BCrypt.withDefaults().hashToString(10, password.getText().toString().toCharArray());
             user.setFullname(fullname.getText().toString());
             user.setUsername(username.getText().toString());
