@@ -608,6 +608,37 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/sensor"
+                    app:layout_constraintStart_toStartOf="@id/sensor"
+                    app:layout_constraintEnd_toEndOf="@id/sensor"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/storage"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_logout" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="Logout"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

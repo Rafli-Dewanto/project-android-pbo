@@ -2,7 +2,9 @@ package com.sugiartha.juniorandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.sugiartha.juniorandroid.helper.AuthDao;
 import com.sugiartha.juniorandroid.model.Auth;
+import com.sugiartha.juniorandroid.utils.Token;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
@@ -65,6 +68,14 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         });
+
+        SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        if (token != null) {
+            Intent i = new Intent(SignupActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
+        }
 
         submit.setOnClickListener(v -> {
             boolean usernameEmpty = username.getText().toString().isEmpty();
