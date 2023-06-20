@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:fontFamily="@font/poppins_extra_bold"
+        android:fontFamily="@font/poppins_extrabold"
         android:text="Digitalent Scholarship"
         android:textColor="@color/black"
         android:textSize="24sp" />
