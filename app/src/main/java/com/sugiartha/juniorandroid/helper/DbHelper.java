@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     static final String DATABASE_NAME = "digitalent.db";
 
@@ -30,12 +30,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + TABLE_PESERTA + " (" +
+        final String SQL_CREATE_PESERTA_TABLE = "CREATE TABLE " + TABLE_PESERTA + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_NAME + " TEXT NOT NULL, " +
                 COLUMN_ADDRESS + " TEXT NOT NULL);";
 
-        db.execSQL(SQL_CREATE_MOVIE_TABLE);
+        db.execSQL(SQL_CREATE_PESERTA_TABLE);
     }
 
     @Override

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ListView;
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
 
 public class ListViewActivity extends AppCompatActivity {
 
@@ -13,6 +14,7 @@ public class ListViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
+        ActivityUtils.setAppBar(ListViewActivity.this, MainActivity.class, "Negara");
 
         lvResult = (ListView) findViewById(R.id.lvResult);
 
