@@ -12,12 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
 public class KoneksiActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_koneksi);
+        ActivityUtils.setAppBar(KoneksiActivity.this, MainActivity.class, "Koneksi");
 
         Button btnCheck = (Button) findViewById(R.id.btnCheck);
         btnCheck.setOnClickListener(new View.OnClickListener() {
