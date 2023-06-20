@@ -3,6 +3,7 @@ package com.sugiartha.juniorandroid.helper;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.sugiartha.juniorandroid.model.Auth;
+import com.sugiartha.juniorandroid.utils.Token;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
@@ -74,8 +76,14 @@ public class AuthDao extends SQLiteOpenHelper {
     }
 
 
+    /**
+     *
+     * @param ctx Activity Context
+     * @param payload user payload from login
+     * @return Authenticated user (fullname, username, gender)
+     */
     @SuppressLint("Range")
-    public Auth authenticate(Auth payload) {
+    public Auth authenticate(Context ctx, Auth payload) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_USER + " WHERE " + COLUMN_USERNAME + " = ?";
         Cursor cursor = db.rawQuery(query, new String[]{payload.getUsername()});
@@ -89,6 +97,14 @@ public class AuthDao extends SQLiteOpenHelper {
                 user.setFullname(cursor.getString(cursor.getColumnIndex(COLUMN_FULLNAME)));
                 user.setUsername(cursor.getString(cursor.getColumnIndex(COLUMN_USERNAME)));
                 user.setGender(cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)));
+
+                String token = Token.generateToken(user);
+
+                SharedPreferences sharedPreferences = ctx.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("token", token);
+                editor.apply();
+
 
                 cursor.close();
                 db.close();

@@ -2,7 +2,9 @@ package com.sugiartha.juniorandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.sugiartha.juniorandroid.helper.AuthDao;
 import com.sugiartha.juniorandroid.model.Auth;
+import com.sugiartha.juniorandroid.utils.Token;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
@@ -30,6 +33,7 @@ public class SignupActivity extends AppCompatActivity {
     Auth user;
     Button submit;
     String hashedPassword;
+    SharedPreferences sharedPreferences;
     AuthDao dbHelper;
 
     @Override
@@ -66,6 +70,14 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
+        sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        if (token != null) {
+            Intent i = new Intent(SignupActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
+        }
+
         submit.setOnClickListener(v -> {
             boolean usernameEmpty = username.getText().toString().isEmpty();
             boolean fullnameEmpty = fullname.getText().toString().isEmpty();
@@ -83,7 +95,15 @@ public class SignupActivity extends AppCompatActivity {
             boolean success = dbHelper.insert(user);
 
             if (success) {
+                String newToken = Token.generateToken(user);
+                sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("token", newToken);
+                editor.apply();
                 Toast.makeText(this, "berhasil signup", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(SignupActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             } else {
                 Toast.makeText(this, "username already exists", Toast.LENGTH_SHORT).show();
             }
