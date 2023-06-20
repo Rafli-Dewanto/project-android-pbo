@@ -112,6 +112,8 @@ public class MainActivity extends AppCompatActivity
             } catch (JwtException e) {
                 e.printStackTrace();
             }
+        } else {
+            btnLogout.setVisibility(View.GONE);
         }
 
         btnLogout.setOnClickListener(v -> {
@@ -124,6 +126,8 @@ public class MainActivity extends AppCompatActivity
                 editor.apply();
                 currentUser.setText("User");
                 Toast.makeText(this, "logout berhasil", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(getIntent());
             }
         });
 
