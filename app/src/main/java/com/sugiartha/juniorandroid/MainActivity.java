@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity
 
                 String fullname = claims.get("fullname", String.class);
                 String formattedName = convertToTitleCaseIteratingChars(fullname);
-                if (fullname != null && !fullname.isEmpty()) {
+                if (formattedName != null && !formattedName.isEmpty()) {
                     currentUser.setText(formattedName);
                 }
             } catch (JwtException e) {

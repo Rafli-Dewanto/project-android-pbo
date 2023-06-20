@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
             dbHelper = new AuthDao(LoginActivity.this);
             try {
                 Auth userExists = dbHelper.authenticate(LoginActivity.this, user);
-                System.out.println(userExists);
 
                 if (userExists != null) {
                     Toast.makeText(this, "Login berhasil", Toast.LENGTH_SHORT).show();

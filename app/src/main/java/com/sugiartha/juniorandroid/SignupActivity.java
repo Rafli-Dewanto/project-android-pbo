@@ -33,6 +33,7 @@ public class SignupActivity extends AppCompatActivity {
     Auth user;
     Button submit;
     String hashedPassword;
+    SharedPreferences sharedPreferences;
     AuthDao dbHelper;
 
     @Override
@@ -69,7 +70,7 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
         if (token != null) {
             Intent i = new Intent(SignupActivity.this, MainActivity.class);
@@ -94,7 +95,15 @@ public class SignupActivity extends AppCompatActivity {
             boolean success = dbHelper.insert(user);
 
             if (success) {
+                String newToken = Token.generateToken(user);
+                sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("token", newToken);
+                editor.apply();
                 Toast.makeText(this, "berhasil signup", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(SignupActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             } else {
                 Toast.makeText(this, "username already exists", Toast.LENGTH_SHORT).show();
             }
