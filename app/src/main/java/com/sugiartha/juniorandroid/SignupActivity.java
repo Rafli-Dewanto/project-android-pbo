@@ -8,6 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,6 +38,7 @@ public class SignupActivity extends AppCompatActivity {
     String hashedPassword;
     SharedPreferences sharedPreferences;
     AuthDao dbHelper;
+    boolean isPasswordVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +163,27 @@ public class SignupActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
             }
+        });
+
+        password.setOnTouchListener((v,e) -> {
+            final int RIGHT = 2;
+            if (e.getAction() == MotionEvent.ACTION_UP) {
+                if (e.getRawX() >= password.getRight() - password.getCompoundDrawables()[RIGHT].getBounds().width()) {
+                    int selection = password.getSelectionEnd();
+                    if (isPasswordVisible) {
+                        password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off, 0);
+                        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        isPasswordVisible = false;
+                    } else {
+                        password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_on, 0);
+                        password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        isPasswordVisible = true;
+                    }
+                    password.setSelection(selection);
+                    return true;
+                }
+            }
+            return false;
         });
     }
 
