@@ -17,11 +17,21 @@ public class FormError {
     }
 
     public static void hideError(EditText editText, TextView errorTextView) {
-        editText.setBackgroundResource(R.drawable.form_edit_success);
+        editText.setBackgroundResource(R.drawable.form_edit);
         errorTextView.setVisibility(View.GONE);
     }
 
     public static void hideError(EditText editText) {
-        editText.setBackgroundResource(R.drawable.form_edit_success);
+        editText.setBackgroundResource(R.drawable.form_edit);
+    }
+
+    public static void showErrorRounded(EditText editText, TextView errorTextView) {
+        editText.setBackgroundResource(R.drawable.form_edit_rounded_err);
+        errorTextView.setVisibility(View.VISIBLE);
+    }
+
+    public static void hideErrorRounded(EditText editText, TextView errorTextView) {
+        editText.setBackgroundResource(R.drawable.form_edit_rounded);
+        errorTextView.setVisibility(View.GONE);
     }
 }
