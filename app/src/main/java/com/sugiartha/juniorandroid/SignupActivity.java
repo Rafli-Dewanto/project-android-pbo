@@ -5,10 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteConstraintException;
-import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +19,7 @@ import android.widget.Toast;
 
 import com.sugiartha.juniorandroid.helper.AuthDao;
 import com.sugiartha.juniorandroid.model.Auth;
+import com.sugiartha.juniorandroid.utils.FormError;
 import com.sugiartha.juniorandroid.utils.Token;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -29,7 +29,7 @@ public class SignupActivity extends AppCompatActivity {
     Spinner spinner;
     String gender;
     EditText fullname, username, password;
-    TextView loginTextView;
+    TextView loginTextView, fullnameTextViewError, usernameTextViewError, passwordTextViewError;
     Auth user;
     Button submit;
     String hashedPassword;
@@ -45,6 +45,12 @@ public class SignupActivity extends AppCompatActivity {
         fullname = findViewById(R.id.et_fullname);
         username = findViewById(R.id.et_username);
         password = findViewById(R.id.et_password);
+
+        // error views
+        fullnameTextViewError = findViewById(R.id.tv_fullname_error);
+        usernameTextViewError = findViewById(R.id.tv_username_error);
+        passwordTextViewError = findViewById(R.id.tv_password_error);
+
         submit = findViewById(R.id.btn_signup);
         loginTextView = findViewById(R.id.tv_login);
         loginTextView.setOnClickListener(v -> {
@@ -79,13 +85,7 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         submit.setOnClickListener(v -> {
-            boolean usernameEmpty = username.getText().toString().isEmpty();
-            boolean fullnameEmpty = fullname.getText().toString().isEmpty();
-            boolean passwordEmpty = password.getText().toString().isEmpty();
-            if(usernameEmpty || fullnameEmpty || passwordEmpty){
-                Toast.makeText(this, "Isi semua data",Toast.LENGTH_SHORT).show();
-                return ;
-            }
+            if (isFormError()) return;
             hashedPassword = BCrypt.withDefaults().hashToString(10, password.getText().toString().toCharArray());
             user.setFullname(fullname.getText().toString());
             user.setUsername(username.getText().toString());
@@ -105,8 +105,80 @@ public class SignupActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             } else {
-                Toast.makeText(this, "username already exists", Toast.LENGTH_SHORT).show();
+                usernameTextViewError.setText("* username already exists");
+                FormError.showErrorRounded(username, usernameTextViewError);
             }
         });
+
+        username.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                FormError.hideErrorRounded(username, usernameTextViewError);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        fullname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                FormError.hideErrorRounded(fullname, fullnameTextViewError);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                FormError.hideErrorRounded(password, passwordTextViewError);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private boolean isFormError(){
+        boolean error = false;
+        boolean usernameEmpty = username.getText().toString().isEmpty();
+        boolean fullnameEmpty = fullname.getText().toString().isEmpty();
+        boolean passwordEmpty = password.getText().toString().isEmpty();
+        if (usernameEmpty || fullnameEmpty || passwordEmpty) {
+            error = true;
+            if (usernameEmpty) {
+                FormError.showErrorRounded(username, usernameTextViewError);
+            }
+            if (fullnameEmpty) {
+                FormError.showErrorRounded(fullname, fullnameTextViewError);
+            }
+            if (passwordEmpty) {
+                FormError.showErrorRounded(password, passwordTextViewError);
+            }
+        }
+        return error;
     }
 }

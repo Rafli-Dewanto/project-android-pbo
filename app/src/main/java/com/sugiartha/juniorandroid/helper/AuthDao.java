@@ -18,7 +18,7 @@ import com.sugiartha.juniorandroid.utils.Token;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class AuthDao extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 5;
 
     static final String DATABASE_NAME = "digitalent.db";
 
@@ -37,7 +37,7 @@ public class AuthDao extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         final String SQL_CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_FULLNAME + " TEXT NOT NULL UNIQUE, " +
+                COLUMN_FULLNAME + " TEXT NOT NULL, " +
                 COLUMN_USERNAME + " TEXT NOT NULL UNIQUE, " +
                 COLUMN_PASSWORD + " TEXT NOT NULL, " +
                 COLUMN_GENDER + " TEXT NOT NULL);";
