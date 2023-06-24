@@ -59,7 +59,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PegawaiTampilSemuaActivity" />
         <activity android:name=".PegawaiTampilActivity" />
-        <activity android:name=".PegawaiMainActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".PegawaiMainActivity" />
         <activity android:name=".ListActivity" />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
