@@ -1,46 +1,44 @@
 package com.sugiartha.juniorandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.sugiartha.juniorandroid.adapter.NegaraAdapter;
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
     //mendeklarasikan listview var dan menginisialasi array tipe data string
-    private ListView lvItem;
-    private String[] namanegara = new String[]{
-            "Indonesia","Malaysia","Singapore" ,
-            "Italia", "Inggris", "Belanda",
-            "Argentina","Chile",
-            "Mesir", "Uganda"};
+    RecyclerView lvItem;
+    List<String> namanegara;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        ActivityUtils.setAppBar(ListActivity.this, MainActivity.class, "Negara List View");
 
-        getSupportActionBar().setTitle("ListView Sederhana"); //tampil judul
-
-        //Membinding atau memformat data
-        lvItem = (ListView) findViewById(R.id.list_view);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ListActivity.this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, namanegara);
-
-        //menset data di dalam listview
+        namanegara = new ArrayList<>(Arrays.asList(
+                "Indonesia", "Malaysia", "Singapore", "Italia", "Inggris", "Belanda",
+                "Argentina", "Chile", "Mesir", "Uganda", "Australia", "Canada",
+                "Brazil", "Germany", "France", "Spain", "Japan", "South Africa",
+                "Thailand", "Mexico", "India", "China", "Russia", "Egypt", "New Zealand"));
+        lvItem = findViewById(R.id.rv_negara);
+        NegaraAdapter adapter = new NegaraAdapter(namanegara, data -> Toast.makeText(ListActivity.this, "Anda memilih " + data , Toast.LENGTH_LONG).show());
+        lvItem.setLayoutManager(new LinearLayoutManager(this));
         lvItem.setAdapter(adapter);
-
-        lvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Toast.makeText(ListActivity.this,
-                        "Memilih : "+namanegara[position], Toast.LENGTH_LONG).show();
-            }
-        });
     }
 }
