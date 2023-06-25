@@ -70,8 +70,9 @@
             android:name=".ListViewActivity" />
         <activity android:name=".HitungBMIActivity" />
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name=".CalculatorActivity"
-            android:label="Kalkulator Advance" />
+             />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".SignupActivity" />
