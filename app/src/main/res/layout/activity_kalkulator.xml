@@ -5,40 +5,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bgkalkulator"
     tools:context=".KalkulatorActivity">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Input Angka Pertama"/>
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="20dp"
+        android:fontFamily="@font/poppins_extra_bold"
+        android:textColor="@color/colorAccent"
+        android:text="Input Angka Pertama" />
 
     <EditText
+        android:id="@+id/angka1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Angka Pertama"
-        android:id="@+id/angka1"/>
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="140dp"
+        android:hint="Angka Pertama" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppins_extra_bold"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
         android:text="Input Angka Kedua"/>
 
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="10dp"
         android:hint="Angka Kedua"
         android:id="@+id/angka2"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="110dp"
         android:text="HITUNG"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_bold"
+        android:background="@drawable/button_kalkulator"
         android:id="@+id/btnHitung"/>
 
     <TextView
+        android:id="@+id/txtHasil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hasil"
-        android:id="@+id/txtHasil"/>
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="150dp"
+        android:fontFamily="@font/poppins_extra_bold"
+        android:textSize="40dp"
+        android:text="Hasil" />
 
 </LinearLayout>
