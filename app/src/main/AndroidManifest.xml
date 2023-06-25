@@ -62,7 +62,9 @@
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".PegawaiMainActivity" />
-        <activity android:name=".ListActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".ListActivity" />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".ListViewActivity" />
