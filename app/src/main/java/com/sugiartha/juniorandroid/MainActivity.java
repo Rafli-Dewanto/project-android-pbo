@@ -3,14 +3,12 @@ package com.sugiartha.juniorandroid;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.material.carousel.CarouselLayoutManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
@@ -20,8 +18,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.sugiartha.juniorandroid.adapter.CarouselAdapter;
-import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
+import com.sugiartha.juniorandroid.helper.AuthDao;
+import com.sugiartha.juniorandroid.helper.DbHelper;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -65,11 +63,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-
-//        carouselView = findViewById(R.id.carouselView);
-//        carouselView.setPageCount(sampleImages.length);
-//        carouselView.setImageListener(imageListener);
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         btnNama = findViewById(R.id.nama);
         btnKalkulator = findViewById(R.id.kalkulator);
@@ -136,8 +129,6 @@ public class MainActivity extends AppCompatActivity
         carouselRecyclerView = findViewById(R.id.carouselView);
         carouselRecyclerView.setLayoutManager(new CarouselLayoutManager());
         carouselRecyclerView.setAdapter(carouselAdapter);
-
-
 
 
         btnNama.setOnClickListener(new Button.OnClickListener() {
@@ -385,5 +376,14 @@ public class MainActivity extends AppCompatActivity
         }
 
         return converted.toString();
+    }
+
+    private void recreateTables() {
+        DbHelper peserta = new DbHelper(MainActivity.this);
+        AuthDao user = new AuthDao(MainActivity.this);
+        SQLiteDatabase db = peserta.getWritableDatabase();
+        SQLiteDatabase db2 = user.getWritableDatabase();
+        peserta.dropAllTables(db);
+        user.dropAllTables(db2);
     }
 }
