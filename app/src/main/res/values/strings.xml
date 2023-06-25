@@ -14,4 +14,25 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_sqlite">SQLiteActivity</string>
+
+    <string name="username">User</string>
+    <string name="username_email">user@email.com</string>
+    <string name="storage">Storage</string>
+    <string name="file">File</string>
+    <string name="catatan">Catatan</string>
+    <string name="sensor">Sensor</string>
+    <string name="seluler">Seluler</string>
+    <string name="gps">GPS</string>
+    <string name="mysql">MySQL</string>
+    <string name="sqlite">SQLite</string>
+    <string name="list">List</string>
+    <string name="list_view">List View</string>
+    <string name="bmi">BMI</string>
+    <string name="calculator">Calculator</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="bilangan">Bilangan</string>
+    <string name="lingkaran">Lingkaran</string>
+    <string name="kalkulator">Kalkulator</string>
+    <string name="nama">Nama</string>
 </resources>

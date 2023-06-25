@@ -1,192 +1,651 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/azure_50"
+    android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    android:background="@drawable/bg"
     tools:showIn="@layout/app_bar_main">
 
-    <com.synnapps.carouselview.CarouselView
-        android:id="@+id/carouselView"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:fillColor="#FFFFFFFF"
-        app:pageColor="#00000000"
-        app:radius="6dp"
-        app:slideInterval="3000"
-        app:strokeColor="#FF777777"
-        app:strokeWidth="1dp"/>
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/carouselView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        android:layout_below="@+id/carouselView">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="@dimen/lebar"
-            android:layout_height="@dimen/tinggi"
-            android:text="Nama"
-            android:id="@+id/nama"/>
-
-        <Button
-            android:layout_width="@dimen/lebar"
-            android:layout_height="@dimen/tinggi"
-            android:text="Kalkulator"
-            android:id="@+id/kalkulator"/>
-
-        <Button
-            android:layout_width="@dimen/lebar"
-            android:layout_height="@dimen/tinggi"
-            android:text="Lingkaran"
-            android:id="@+id/lingkaran"/>
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="28dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp"
+            app:contentPaddingBottom="10dp"
+            app:contentPaddingTop="10dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/carouselView">
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="Bilangan"
-                android:id="@+id/bilangan"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp">
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="Login"
-                android:id="@+id/login"/>
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="Sign Up"
-                android:id="@+id/signup"/>
+                <LinearLayout
+                    android:id="@+id/nama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@id/kalkulator"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UseCompoundDrawables">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/nama"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_nama" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/nama"
+                        android:textColor="@color/black" />
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="Calculator"
-                android:id="@+id/calculator"/>
+                </LinearLayout>
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="BMI"
-                android:id="@+id/bmi"/>
+                <LinearLayout
+                    android:id="@+id/kalkulator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@id/lingkaran"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/nama"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UseCompoundDrawables">
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="List View"
-                android:id="@+id/listview"/>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/kalkulator"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_calc" />
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/kalkulator"
+                        android:textColor="@color/black" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+                </LinearLayout>
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="Catatan"
-                android:id="@+id/catatan"/>
+                <LinearLayout
+                    android:id="@+id/lingkaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@id/bilangan"
+                    app:layout_constraintStart_toEndOf="@id/kalkulator"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UseCompoundDrawables">
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="File"
-                android:id="@+id/internalexternal"/>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/lingkaran"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_circle" />
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="Storage"
-                android:id="@+id/storage"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/lingkaran"
+                        android:textColor="@color/black" />
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/bilangan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/lingkaran"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UseCompoundDrawables">
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="List"
-                android:id="@+id/list"/>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/bilangan"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_bilangan" />
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="SQLite"
-                android:id="@+id/sqlite"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/bilangan"
+                        android:textColor="@color/black" />
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="MySQL"
-                android:id="@+id/mysql"/>
+                </LinearLayout>
 
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/nama"
+                    app:layout_constraintStart_toStartOf="@id/nama"
+                    app:layout_constraintTop_toBottomOf="@id/nama"
+                    tools:ignore="UseCompoundDrawables">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/login"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_login" />
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="CEK GPS"
-                android:id="@+id/gps"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/login"
+                        android:textColor="@color/black" />
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="Seluler"
-                android:id="@+id/seluler"/>
+                </LinearLayout>
 
-            <Button
-                android:layout_width="@dimen/lebar"
-                android:layout_height="@dimen/tinggi"
-                android:text="Sensor"
-                android:id="@+id/sensor"/>
+                <LinearLayout
+                    android:id="@+id/signup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/kalkulator"
+                    app:layout_constraintStart_toStartOf="@id/kalkulator"
+                    app:layout_constraintTop_toBottomOf="@id/kalkulator"
+                    tools:ignore="UseCompoundDrawables">
 
-        </LinearLayout>
-    </LinearLayout>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/sign_up"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_signup" />
 
-</RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/sign_up"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/calculator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/lingkaran"
+                    app:layout_constraintStart_toStartOf="@id/lingkaran"
+                    app:layout_constraintTop_toBottomOf="@id/lingkaran"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/calculator"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_calc" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/calculator"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bmi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/bilangan"
+                    app:layout_constraintStart_toStartOf="@id/bilangan"
+                    app:layout_constraintTop_toBottomOf="@id/bilangan"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/bmi"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_bmi" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/bmi"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/listview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/login"
+                    app:layout_constraintStart_toStartOf="@id/login"
+                    app:layout_constraintTop_toBottomOf="@id/login"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/list_view"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_list" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/list_view"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/signup"
+                    app:layout_constraintStart_toStartOf="@id/signup"
+                    app:layout_constraintTop_toBottomOf="@id/signup"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/list"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_lv" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/list"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sqlite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/calculator"
+                    app:layout_constraintStart_toStartOf="@id/calculator"
+                    app:layout_constraintTop_toBottomOf="@id/calculator"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/sqlite"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_sqlite" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/sqlite"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mysql"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/bmi"
+                    app:layout_constraintStart_toStartOf="@id/bmi"
+                    app:layout_constraintTop_toBottomOf="@id/bmi"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/mysql"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_mysql" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/mysql"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/gps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/listview"
+                    app:layout_constraintStart_toStartOf="@id/listview"
+                    app:layout_constraintTop_toBottomOf="@id/listview"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/gps"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_gps" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/gps"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/seluler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/list"
+                    app:layout_constraintStart_toStartOf="@id/list"
+                    app:layout_constraintTop_toBottomOf="@id/list"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/seluler"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_seluler" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/seluler"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sensor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/sqlite"
+                    app:layout_constraintStart_toStartOf="@id/sqlite"
+                    app:layout_constraintTop_toBottomOf="@id/sqlite"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/sensor"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_sensor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/sensor"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/catatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/mysql"
+                    app:layout_constraintStart_toStartOf="@id/mysql"
+                    app:layout_constraintTop_toBottomOf="@id/mysql"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/catatan"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_catatan" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/catatan"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/internalexternal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/gps"
+                    app:layout_constraintStart_toStartOf="@id/gps"
+                    app:layout_constraintTop_toBottomOf="@id/gps"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/file"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_file" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/file"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/storage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/seluler"
+                    app:layout_constraintStart_toStartOf="@id/seluler"
+                    app:layout_constraintTop_toBottomOf="@id/seluler"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/storage"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_storage" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="@string/storage"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/sensor"
+                    app:layout_constraintStart_toStartOf="@id/sensor"
+                    app:layout_constraintEnd_toEndOf="@id/sensor"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/form_edit"
+                        android:contentDescription="@string/storage"
+                        android:padding="8dp"
+                        android:src="@drawable/vector_logout" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingTop="4dp"
+                        android:text="Logout"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

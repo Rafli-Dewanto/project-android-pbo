@@ -1,49 +1,48 @@
 package com.sugiartha.juniorandroid;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
-import android.os.Looper;
-import android.provider.Settings;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.tapadoo.alerter.Alerter;
 
-public class GPS extends AppCompatActivity {
-    // initializing
-    // FusedLocationProviderClient
-    // object
+import java.util.List;
+import java.util.Locale;
+
+public class GPS extends AppCompatActivity implements LocationListener {
     FusedLocationProviderClient mFusedLocationClient;
+    Button getLocationButton;
 
-    // Initializing other items
-    // from layout file
     TextView latitudeTextView, longitudeTextView;
-    ImageView backArrowButton;
-    int PERMISSION_ID = 44;
+    ImageView backArrowButton, closeBannerImageView;
+    Animation slideInToTop;
+    ConstraintLayout banner;
+    @SuppressWarnings("FieldCanBeLocal") private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +52,28 @@ public class GPS extends AppCompatActivity {
         latitudeTextView = findViewById(R.id.tv_latitude);
         longitudeTextView = findViewById(R.id.tv_longitude);
         backArrowButton = findViewById(R.id.btn_back);
+        closeBannerImageView = findViewById(R.id.iv_close);
+        closeBannerImageView.setOnClickListener(v -> banner.setVisibility(View.GONE));
+
+        latitudeTextView.setVisibility(View.GONE);
+        longitudeTextView.setVisibility(View.GONE);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        Button getLocationButton = findViewById(R.id.btn_get_location);
-        getLocationButton.setOnClickListener(v -> getLastLocation());
+        getLocationButton = findViewById(R.id.btn_get_location);
+        slideInToTop = AnimationUtils.loadAnimation(this, R.anim.slide_in_to_top);
+        banner = findViewById(R.id.cl_banner);
+
+        if (isPermissionGranted()) {
+            ActivityCompat.requestPermissions(GPS.this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            }, 100);
+        }
+
+        getLocationButton.setOnClickListener(v -> {
+            handleGPSLoadingState();
+            getLocation();
+        });
 
         backArrowButton.setOnClickListener(v -> {
             Intent i = new Intent(GPS.this, MainActivity.class);
@@ -66,102 +82,69 @@ public class GPS extends AppCompatActivity {
         });
     }
 
-
     @SuppressLint("MissingPermission")
-    private void getLastLocation() {
-        if (checkPermissions()) {
-            if (isLocationEnabled()) {
+    private void getLocation() {
+        try {
+            locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, GPS.this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-                // getting last
-                // location from
-                // FusedLocationClient
-                // object
-                mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        Location location = task.getResult();
-                        if (location == null) {
-                            requestNewLocationData();
-                        } else {
-                            latitudeTextView.setText("Latitude: " + location.getLatitude());
-                            longitudeTextView.setText("Longitude: " + location.getLongitude());
-                        }
-                    }
-                });
-            } else {
-                Toast.makeText(this, "Please turn on your location...", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
-            }
+
+    private void handleGPSLoadingState() {
+        if (latitudeTextView.getVisibility() == View.GONE && longitudeTextView.getVisibility() == View.GONE) {
+            getLocationButton.setEnabled(false);
+            Alerter.create(GPS.this)
+                    .setTitle("Getting Location...")
+                    .setBackgroundColorRes(R.color.colorPrimary)
+                    .enableProgress(true)
+                    .show();
         } else {
-            // if permissions aren't available,
-            // request for permissions
-            requestPermissions();
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    private void requestNewLocationData() {
-
-        // Initializing LocationRequest
-        // object with appropriate methods
-        LocationRequest mLocationRequest = new LocationRequest();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(5);
-        mLocationRequest.setFastestInterval(0);
-        mLocationRequest.setNumUpdates(1);
-
-        // setting LocationRequest
-        // on FusedLocationClient
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
-    }
-
-    private LocationCallback mLocationCallback = new LocationCallback() {
-
-        @Override
-        public void onLocationResult(LocationResult locationResult) {
-            Location mLastLocation = locationResult.getLastLocation();
-            latitudeTextView.setText("Latitude: " + mLastLocation.getLatitude());
-            longitudeTextView.setText("Longitude: " + mLastLocation.getLongitude());
-        }
-    };
-
-    // method to check for permissions
-    private boolean checkPermissions() {
-        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-    }
-
-    // method to request permissions
-    private void requestPermissions() {
-        ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_ID);
-    }
-
-    // method to check if location is enabled
-    private boolean isLocationEnabled() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-    }
-
-    // Handle permission request result
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == PERMISSION_ID) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLastLocation();
-            }
+            getLocationButton.setEnabled(true);
+            Alerter.clearCurrent(GPS.this);
         }
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        if (checkPermissions()) {
-            getLastLocation();
+    public void onLocationChanged(@NonNull Location location) {
+        String latitude = String.valueOf(location.getLatitude());
+        String longitude = String.valueOf(location.getLongitude());
+
+        latitudeTextView.setText(String.format("Latitude: %s", latitude));
+        longitudeTextView.setText(String.format("Longitude: %s", longitude));
+        getLocationButton.setEnabled(true);
+
+        new Handler().postDelayed(() -> {
+            longitudeTextView.setVisibility(View.VISIBLE);
+            latitudeTextView.setVisibility(View.VISIBLE);
+            banner.setVisibility(View.VISIBLE);
+            banner.startAnimation(slideInToTop);
+            handleGPSLoadingState();
+            Alerter.create(GPS.this)
+                    .setTitle("Success")
+                    .setText("Location acquired")
+                    .setDuration(6000)
+                    .setBackgroundColorRes(R.color.success)
+                    .show();
+        }, 2000);
+
+
+        // Currently not working (grpc error)
+        try {
+            Geocoder geocoder = new Geocoder(GPS.this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            String address = addresses.get(0).getAddressLine(0);
+
+            Toast.makeText(this, address, Toast.LENGTH_SHORT).show();
+            Log.i("gps", "berhasil get address");
+        } catch (Exception e) {
+            Log.e("gps", e.getMessage());
         }
+    }
+
+    private boolean isPermissionGranted() {
+        return ContextCompat.checkSelfPermission(GPS.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED;
     }
 }

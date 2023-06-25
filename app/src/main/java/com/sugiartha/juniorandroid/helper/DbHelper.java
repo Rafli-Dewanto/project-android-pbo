@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
 
     static final String DATABASE_NAME = "digitalent.db";
 
@@ -30,12 +30,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + TABLE_PESERTA + " (" +
+        final String SQL_CREATE_PESERTA_TABLE = "CREATE TABLE " + TABLE_PESERTA + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_NAME + " TEXT NOT NULL, " +
                 COLUMN_ADDRESS + " TEXT NOT NULL);";
 
-        db.execSQL(SQL_CREATE_MOVIE_TABLE);
+        db.execSQL(SQL_CREATE_PESERTA_TABLE);
     }
 
     @Override
@@ -102,4 +102,20 @@ public class DbHelper extends SQLiteOpenHelper {
         database.execSQL(updateQuery);
         database.close();
     }
+
+    public void dropAllTables(SQLiteDatabase db) {
+        // List of table names in your database
+        String[] tableNames = {
+                TABLE_PESERTA,
+        };
+
+        for (String tableName : tableNames) {
+            String dropTableQuery = "DROP TABLE IF EXISTS " + tableName;
+            db.execSQL(dropTableQuery);
+        }
+
+        onCreate(db);
+    }
+
+
 }

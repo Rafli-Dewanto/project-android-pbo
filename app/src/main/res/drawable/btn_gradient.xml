@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Style for the pressed state -->
+    <item android:state_pressed="true">
+        <shape>
+            <gradient
+                android:endColor="@color/azure_800"
+                android:startColor="@color/azure_600" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+
+    <!-- Style for the hovered state -->
+    <item android:state_drag_hovered="true">
+        <shape>
+            <gradient
+                android:endColor="@color/azure_500"
+                android:startColor="@color/azure_700" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+
+    <!-- Style for the disabled state -->
+    <item android:state_enabled="false">
+        <shape>
+            <gradient
+                android:endColor="@color/azure_100"
+                android:startColor="@color/azure_300" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+
+    <!-- Default style for the button -->
+    <item>
+        <shape>
+            <gradient
+                android:endColor="@color/azure_600"
+                android:startColor="@color/azure_400" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+
+</selector>

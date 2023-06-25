@@ -10,6 +10,8 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
 public class SensorActivity extends AppCompatActivity {
     TextView ProximitySensor, data;
     SensorManager mySensorManager;
@@ -19,6 +21,7 @@ public class SensorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
+        ActivityUtils.setAppBar(SensorActivity.this, MainActivity.class, "Sensor");
         ProximitySensor = (TextView) findViewById(R.id.proximitySensor);
         data = (TextView) findViewById(R.id.data);
         mySensorManager = (SensorManager) getSystemService(

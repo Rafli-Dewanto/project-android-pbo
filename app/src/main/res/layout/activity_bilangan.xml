@@ -7,27 +7,78 @@
     android:orientation="vertical"
     tools:context=".BilanganActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Masukkan Angka" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Masukkan Sembarang Angka"
-        android:id="@+id/angka"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Proses"
-        android:id="@+id/proses"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bilangan"
-        android:id="@+id/bilangan"/>
+        android:text="Bilangan Activity"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:textSize="30sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/colorPrimary"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="360sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="12dp"
+        app:contentPaddingTop="40dp"
+        app:cardBackgroundColor="@color/colorBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Masukkan Angka"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/angka"
+                android:textColor="@color/black"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:background="@drawable/form_edit"
+                android:hint="Angka"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Proses"
+                android:textColor="@color/colorBackground"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/proses"
+                android:background="@drawable/btn_selector"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="25dp"
+                android:text="Bilangan"
+                android:textSize="22dp"
+                android:id="@+id/bilangan"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
