@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -37,7 +38,7 @@ public class SignupActivity extends AppCompatActivity {
     Button submit;
     String hashedPassword;
     SharedPreferences sharedPreferences;
-    AuthDao dbHelper;
+    AuthDao authDao;
     boolean isPasswordVisible;
 
     @Override
@@ -45,7 +46,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         user = new Auth();
-        dbHelper = new AuthDao(SignupActivity.this);
+        authDao = new AuthDao(SignupActivity.this);
         fullname = findViewById(R.id.et_fullname);
         username = findViewById(R.id.et_username);
         password = findViewById(R.id.et_password);
@@ -95,23 +96,28 @@ public class SignupActivity extends AppCompatActivity {
             user.setUsername(username.getText().toString());
             user.setPassword(hashedPassword);
             // insert data
-            dbHelper = new AuthDao(SignupActivity.this);
-            boolean success = dbHelper.insert(user);
-
-            if (success) {
-                String newToken = Token.generateToken(user);
-                sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("token", newToken);
-                editor.apply();
-                Toast.makeText(this, "berhasil signup", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(SignupActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
-            } else {
-                usernameTextViewError.setText("* username already exists");
-                FormError.showErrorRounded(username, usernameTextViewError);
+            authDao = new AuthDao(SignupActivity.this);
+            try {
+                boolean success = authDao.insert(user);
+                if (success) {
+                    String newToken = Token.generateToken(user);
+                    sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("token", newToken);
+                    editor.apply();
+                    Toast.makeText(this, "berhasil signup", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(SignupActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                } else {
+                    usernameTextViewError.setText("* username already exists");
+                    FormError.showErrorRounded(username, usernameTextViewError);
+                }
+            } catch(SQLiteException e) {
+                Toast.makeText(this, "Error: Database table not found", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
+
         });
 
         username.addTextChangedListener(new TextWatcher() {

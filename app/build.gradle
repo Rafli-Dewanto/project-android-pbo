@@ -36,7 +36,6 @@ dependencies {
     //
     def lottieVersion = "6.0.0"
     def JJWT_RELEASE_VERSION = "0.11.5"
-    implementation 'com.synnapps:carouselview:0.1.4'
     implementation 'com.karumi:dexter:6.2.3'
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.github.tapadoo:alerter:7.2.4'

@@ -116,5 +116,19 @@ public class AuthDao extends SQLiteOpenHelper {
         return null; // Authentication failed
     }
 
+    public void dropAllTables(SQLiteDatabase db) {
+        // List of table names in your database
+        String[] tableNames = {
+                TABLE_USER,
+        };
+
+        for (String tableName : tableNames) {
+            String dropTableQuery = "DROP TABLE IF EXISTS " + tableName;
+            db.execSQL(dropTableQuery);
+        }
+
+        onCreate(db);
+    }
+
 
 }

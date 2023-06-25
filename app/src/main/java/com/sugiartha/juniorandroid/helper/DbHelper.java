@@ -102,4 +102,20 @@ public class DbHelper extends SQLiteOpenHelper {
         database.execSQL(updateQuery);
         database.close();
     }
+
+    public void dropAllTables(SQLiteDatabase db) {
+        // List of table names in your database
+        String[] tableNames = {
+                TABLE_PESERTA,
+        };
+
+        for (String tableName : tableNames) {
+            String dropTableQuery = "DROP TABLE IF EXISTS " + tableName;
+            db.execSQL(dropTableQuery);
+        }
+
+        onCreate(db);
+    }
+
+
 }
