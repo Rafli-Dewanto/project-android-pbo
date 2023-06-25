@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.google.android.material.carousel.CarouselLayoutManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.os.Handler;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
@@ -129,6 +130,32 @@ public class MainActivity extends AppCompatActivity
         carouselRecyclerView = findViewById(R.id.carouselView);
         carouselRecyclerView.setLayoutManager(new CarouselLayoutManager());
         carouselRecyclerView.setAdapter(carouselAdapter);
+        // auto slide carousel
+        // Set up automatic sliding
+        final int delayMillis = 3000;
+        final Handler handler = new Handler();
+        final Runnable runnable = new Runnable() {
+            int currentItem = 0;
+            int itemCount = carouselAdapter.getItemCount();
+
+            @Override
+            public void run() {
+                // Calculate the next position to scroll to
+                int nextPosition = (currentItem + 1) % itemCount;
+
+                // Scroll to the next position
+                carouselRecyclerView.smoothScrollToPosition(nextPosition);
+
+                // Update the current item
+                currentItem = nextPosition;
+
+                // Schedule the next run after the specified delay
+                handler.postDelayed(this, delayMillis);
+            }
+        };
+
+        // Start the automatic sliding
+        handler.postDelayed(runnable, delayMillis);
 
 
         btnNama.setOnClickListener(new Button.OnClickListener() {
