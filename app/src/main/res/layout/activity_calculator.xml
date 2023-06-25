@@ -1,117 +1,376 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8" ?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CalculatorActivity">
+    android:layout_height="match_parent">
 
-    <Button
-        android:text="+"
+    <com.sugiartha.juniorandroid.components.DynamicAppBar
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tambah"
-        android:layout_below="@+id/angka_kedua"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp"
-        android:layout_width="80dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/et_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/angka_pertama"
-        android:hint="Masukkan angka pertama"
-        android:textSize="14sp"
-        android:layout_below="@+id/textView5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="22dp" />
+        android:layout_height="130dp"
+        android:layout_gravity="end"
+        android:background="@android:color/transparent"
+        android:hint="Input"
+        android:inputType="none"
+        android:paddingEnd="20dp"
+        android:paddingRight="20dp"
+        android:textAlignment="viewEnd"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
-    <EditText
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:layout_below="@+id/angka_pertama"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/angka_kedua"
-        android:hint="Masukkan angka kedua"
-        android:textSize="14sp" />
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_input">
 
-    <TextView
-        android:text="MASUKKAN DUA ANGKA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView5"
-        android:textAlignment="center"
-        android:textStyle="normal|bold"
-        android:textSize="24sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/calc_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:text="0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/hasil"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:textSize="36sp"
-        android:textAlignment="center" />
+            <Button
+                android:id="@+id/btn_ac"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="AC"
+                android:textColor="#FB7171"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/btn_del"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/calc_container" />
 
-    <TextView
-        android:text="HASIl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textAlignment="center"
-        android:textStyle="normal|bold"
-        android:textSize="24sp"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/bersihkan"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <Button
+                android:id="@+id/btn_del"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="⌫"
+                android:textColor="#FB7171"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/btn_percent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn_ac"
+                app:layout_constraintTop_toTopOf="@id/calc_container" />
 
-    <Button
-        android:text="-"
-        android:layout_height="wrap_content"
-        android:id="@+id/kurang"
-        android:layout_width="80dp"
-        android:layout_alignBaseline="@+id/tambah"
-        android:layout_alignBottom="@+id/tambah"
-        android:layout_toRightOf="@+id/tambah"
-        android:layout_toEndOf="@+id/tambah" />
+            <Button
+                android:id="@+id/btn_percent"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="%"
+                android:textColor="@color/colorPrimary"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/btn_div"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn_del"
+                app:layout_constraintTop_toTopOf="@id/calc_container" />
 
-    <Button
-        android:text="BERSIHKAN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bersihkan"
-        android:layout_below="@+id/tambah"
-        android:layout_centerHorizontal="true" />
+            <Button
+                android:id="@+id/btn_div"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="÷"
+                android:textColor="@color/colorPrimary"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn_percent"
+                app:layout_constraintTop_toTopOf="@id/calc_container" />
 
-    <Button
-        android:text="/"
-        android:layout_height="wrap_content"
-        android:id="@+id/bagi"
-        android:layout_width="80dp"
-        android:layout_above="@+id/bersihkan"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
-    <Button
-        android:text="X"
-        android:layout_height="wrap_content"
-        android:id="@+id/kali"
-        android:layout_width="80dp"
-        android:layout_alignBaseline="@+id/bagi"
-        android:layout_alignBottom="@+id/bagi"
-        android:layout_toLeftOf="@+id/bagi"
-        android:layout_toStartOf="@+id/bagi" />
+            <Button
+                android:id="@+id/btn_7"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="7"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_ac"
+                app:layout_constraintStart_toStartOf="@+id/btn_ac"
+                app:layout_constraintTop_toBottomOf="@id/btn_ac" />
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/btn_4"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="4"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_7"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_7"
+                app:layout_constraintTop_toBottomOf="@+id/btn_7" />
+
+            <Button
+                android:id="@+id/btn_1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_4"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_4"
+                app:layout_constraintTop_toBottomOf="@+id/btn_4" />
+
+            <Button
+                android:id="@+id/btn_negate"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="+/-"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_1"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_1"
+                app:layout_constraintTop_toBottomOf="@+id/btn_1" />
+
+            <Button
+                android:id="@+id/btn_5"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="5"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_8"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_8"
+                app:layout_constraintTop_toBottomOf="@+id/btn_8" />
+
+            <Button
+                android:id="@+id/btn_2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="2"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_5"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_5"
+                app:layout_constraintTop_toBottomOf="@+id/btn_5" />
+
+            <Button
+                android:id="@+id/btn_0"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_2"
+                app:layout_constraintTop_toBottomOf="@+id/btn_2" />
+
+            <Button
+                android:id="@+id/btn_6"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="6"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_9"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_9"
+                app:layout_constraintTop_toBottomOf="@+id/btn_9" />
+
+            <Button
+                android:id="@+id/btn_3"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="3"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_6"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_6"
+                app:layout_constraintTop_toBottomOf="@+id/btn_6" />
+
+            <Button
+                android:id="@+id/btn_decimal"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="."
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_3"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_3"
+                app:layout_constraintTop_toBottomOf="@+id/btn_3" />
+
+            <Button
+                android:id="@+id/btn_minus"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="-"
+                android:textColor="@color/colorPrimary"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_multiply"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_multiply"
+                app:layout_constraintTop_toBottomOf="@+id/btn_multiply" />
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="+"
+                android:textColor="@color/colorPrimary"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_minus"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_minus"
+                app:layout_constraintTop_toBottomOf="@+id/btn_minus" />
+
+            <Button
+                android:id="@+id/btn_equals"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="="
+                android:textColor="@color/colorPrimary"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_add"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_add"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add" />
+
+            <Button
+                android:id="@+id/btn_8"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="8"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_del"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_del"
+                app:layout_constraintTop_toBottomOf="@+id/btn_del" />
+
+            <Button
+                android:id="@+id/btn_9"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="9"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_percent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_percent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_percent" />
+
+            <Button
+                android:id="@+id/btn_multiply"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/calculator_button"
+                android:fontFamily="@font/poppins_family"
+                android:text="×"
+                android:textColor="@color/colorPrimary"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_div"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_div"
+                app:layout_constraintTop_toBottomOf="@+id/btn_div" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
