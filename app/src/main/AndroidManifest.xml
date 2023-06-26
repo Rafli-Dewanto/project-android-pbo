@@ -73,7 +73,9 @@
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".ListViewActivity" />
-        <activity android:name=".HitungBMIActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".HitungBMIActivity" />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".CalculatorActivity"
