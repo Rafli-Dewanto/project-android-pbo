@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
 public class BilanganActivity extends AppCompatActivity {
 
     Button proses;
@@ -18,6 +20,8 @@ public class BilanganActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bilangan);
+
+        ActivityUtils.setAppBar(BilanganActivity.this, MainActivity.class, "Bilangan");
 
         proses = (Button) findViewById(R.id.proses);
         angka = (EditText) findViewById(R.id.angka);
