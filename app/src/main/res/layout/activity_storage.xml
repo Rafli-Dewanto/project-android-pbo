@@ -8,6 +8,14 @@
 
     tools:context=".StorageActivity">
 
+    <com.sugiartha.juniorandroid.components.DynamicAppBar
+        android:id="@+id/appbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,10 +42,9 @@
     </LinearLayout>
     <Button
         android:id="@+id/save_internal"
-        android:backgroundTint="@color/light_gray"
-        android:background="@drawable/btn_selector"
+        android:background="@drawable/btn_outlined_selector"
         android:text="INTERNAL"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_width="300dp"
@@ -52,8 +59,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:text="EXTERNAL"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/light_gray"
-        android:background="@drawable/btn_selector"/>
+        android:textColor="@color/black"
+        android:background="@drawable/btn_outlined_selector"/>
 
 </LinearLayout>
