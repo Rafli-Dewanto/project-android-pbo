@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,6 +30,7 @@ public class CatatanExternalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catatan_external);
+        ActivityUtils.setAppBar(CatatanExternalActivity.this, MainActivity.class, "Catatan");
 
         inputText = findViewById(R.id.input_text);
         btnSimpan = findViewById(R.id.btn_simpan);
@@ -72,7 +75,7 @@ public class CatatanExternalActivity extends AppCompatActivity {
                     }
                     InputRead.close();
                     textCatatan.setText(s.toString());
-
+                    textCatatan.setVisibility(View.VISIBLE);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

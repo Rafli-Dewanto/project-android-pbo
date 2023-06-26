@@ -37,6 +37,7 @@
             android:name=".InternalExternalActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name=".CatatanExternalActivity"
             android:exported="false" />
         <activity

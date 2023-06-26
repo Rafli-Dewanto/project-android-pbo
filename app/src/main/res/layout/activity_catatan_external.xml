@@ -5,21 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@drawable/bgcatatanex"
     tools:context=".CatatanExternalActivity">
+
+    <com.sugiartha.juniorandroid.components.DynamicAppBar
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aplikasi Catatan"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/poppins_bold"
+        android:text="Aplikasi Catatan"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="Penyimpanan internal"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
@@ -37,43 +42,49 @@
             android:gravity="top"
             android:hint="Tulis catatan disini"
             android:inputType="textMultiLine"
-            android:minLines="13" />
+            android:minLines="10" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_simpan"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_simpancat"
-            android:text="SIMPAN CATATAN" />
+            android:background="@drawable/btn_selector"
+            android:text="Simpan"
+            android:textColor="@color/white" />
 
         <View
             android:layout_width="16dp"
-            android:layout_height="match_parent" />
+            android:layout_height="1dp" />
 
         <Button
             android:id="@+id/btn_baca"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_simpancat"
-            android:text="LIHAT CATATAN" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            android:background="@drawable/btn_selector"
+            android:text="Baca"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
     <TextView
+        android:visibility="gone"
+        android:padding="20dp"
+        android:fontFamily="@font/poppins_family"
+        android:textColor="@color/black"
         android:id="@+id/text_catatan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="32dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+        android:background="@drawable/banner" />
 
 </LinearLayout>
