@@ -18,11 +18,13 @@
         android:background="@drawable/btn_gradient"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="32dp"
+        android:textColor="@color/white"
         android:text="Buat File"/>
 
     <Button
         android:id="@+id/btnUbahFile"
         android:layout_width="match_parent"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_family"
         android:background="@drawable/btn_gradient"
@@ -33,6 +35,7 @@
     <Button
         android:id="@+id/btnBacaFile"
         android:layout_width="match_parent"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_family"
         android:background="@drawable/btn_gradient"
@@ -44,6 +47,7 @@
         android:id="@+id/btnHapusFile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:fontFamily="@font/poppins_family"
         android:background="@drawable/btn_gradient"
         android:layout_marginHorizontal="10dp"
