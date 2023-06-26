@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,6 +25,7 @@ public class InternalExternalActivity extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_internal_external);
+        ActivityUtils.setAppBar(InternalExternalActivity.this, MainActivity.class, "File");
 
         Button buatFile = findViewById(R.id.btnBuatFile);
         Button ubahFile = findViewById(R.id.btnUbahFile);

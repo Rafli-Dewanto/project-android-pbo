@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +36,7 @@ public class PegawaiTampilActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pegawai_tampil);
+        ActivityUtils.setAppBar(PegawaiTampilActivity.this, PegawaiTampilSemuaActivity.class, "Edit Pegawai");
 
         Intent intent = getIntent();
 
@@ -192,6 +195,8 @@ public class PegawaiTampilActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         if(v == buttonUpdate){
             updateEmployee();
+            startActivity(new Intent(PegawaiTampilActivity.this, PegawaiTampilSemuaActivity.class));
+            finish();
         }
 
         if(v == buttonDelete){
