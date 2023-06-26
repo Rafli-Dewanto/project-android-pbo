@@ -17,7 +17,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
 
     EditText input;
     Button addButton, minusButton, divisionButton, multiplyButton, percentButton, equalButton, parentButton, clearButton;
-    Button negateButton, decimalButton;
+    Button decimalButton;
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0;
     String proses = "";
     double hasil;
@@ -57,7 +57,6 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         equalButton = findViewById(R.id.btn_equals);
         parentButton = findViewById(R.id.btn_del);
         clearButton = findViewById(R.id.btn_ac);
-        negateButton = findViewById(R.id.btn_negate);
         decimalButton = findViewById(R.id.btn_decimal);
 
         // Set click listeners for buttons
@@ -79,7 +78,6 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         equalButton.setOnClickListener(this);
         parentButton.setOnClickListener(this);
         clearButton.setOnClickListener(this);
-        negateButton.setOnClickListener(this);
         decimalButton.setOnClickListener(this);
     }
 
@@ -165,20 +163,12 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                 proses = "";
                 input.setText("");
                 break;
-            case R.id.btn_negate:
-                toggleNegation();
-                input.setText(proses);
-                break;
             case R.id.btn_decimal:
                 proses += ".";
                 input.setText(proses);
                 break;
         }
     }
-    private void toggleNegation() {
-
-    }
-
 
 
 }
