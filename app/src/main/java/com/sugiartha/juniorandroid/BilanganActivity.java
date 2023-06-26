@@ -19,6 +19,8 @@ public class BilanganActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bilangan);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         proses = (Button) findViewById(R.id.proses);
         angka = (EditText) findViewById(R.id.angka);
         bilangan = (TextView) findViewById(R.id.bilangan);

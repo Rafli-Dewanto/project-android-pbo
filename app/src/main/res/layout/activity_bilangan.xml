@@ -8,21 +8,11 @@
     tools:context=".BilanganActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bilangan Activity"
-        android:layout_gravity="center"
-        android:layout_marginTop="120dp"
-        android:textSize="30sp"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/colorPrimary"/>
-
     <androidx.cardview.widget.CardView
         android:layout_width="360sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="200dp"
         app:cardElevation="8dp"
         app:cardCornerRadius="12dp"
         app:contentPaddingTop="40dp"
@@ -57,7 +47,7 @@
                 android:hint="Angka"/>
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Proses"
