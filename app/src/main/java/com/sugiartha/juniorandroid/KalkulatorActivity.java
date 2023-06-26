@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
 public class KalkulatorActivity extends AppCompatActivity {
 
     EditText angka1, angka2;
@@ -18,6 +20,7 @@ public class KalkulatorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kalkulator);
+        ActivityUtils.setAppBar(KalkulatorActivity.this, MainActivity.class, "Kalkulator");
 
         btnHitung = (Button) findViewById(R.id.btnHitung);
         angka1 = (EditText) findViewById(R.id.angka1);
