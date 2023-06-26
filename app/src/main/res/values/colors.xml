@@ -9,7 +9,7 @@
     <color name="colorAccent4">#155EAE</color>
     <color name="colorDisabled">#72A0DF</color>
     <color name="colorBackground">#ffffff</color>
-
+    <color name="colorEditText">#EEEEEE</color>
     <!-- Tailwind Colors   -->
     <color name="azure_50">#edfaff</color>
     <color name="azure_100">#d6f2ff</color>
