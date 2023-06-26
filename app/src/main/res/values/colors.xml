@@ -9,7 +9,7 @@
     <color name="colorAccent4">#155EAE</color>
     <color name="colorDisabled">#72A0DF</color>
     <color name="colorBackground">#ffffff</color>
-
+    <color name="colorEditText">#EEEEEE</color>
     <!-- Tailwind Colors   -->
     <color name="azure_50">#edfaff</color>
     <color name="azure_100">#d6f2ff</color>
@@ -27,6 +27,7 @@
     <color name="black">#000</color>
     <color name="white">#ffffff</color>
     <color name="error">#FF3737</color>
+    <color name="error_soft">#F15A59</color>
     <color name="errorContainer">#F8DEDC</color>
     <color name="warning">#E5A03B</color>
     <color name="success">#4CAF50</color>

@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
 public class HitungBMIActivity extends AppCompatActivity {
 
     HitungBMI hitungBMI = new HitungBMI(); //Membuat object dari class HitungBMI (konsep OOP biasa)
@@ -20,6 +22,7 @@ public class HitungBMIActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hitung_bmi);
+        ActivityUtils.setAppBar(HitungBMIActivity.this, MainActivity.class, "BMI Calculator");
 
         txtBeratBadan = findViewById(R.id.txtBeratBadan); //Menyambungkan elemen dengan id txtBeratBadan yang ada di activity_main.xml kesini
         txtTinggibadan = findViewById(R.id.txtTinggiBadan); //Menyambungkan elemen dengan id txtTinggiBadan yang ada di activity_main.xml kesini

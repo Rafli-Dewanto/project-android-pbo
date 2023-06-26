@@ -3,6 +3,7 @@ package com.sugiartha.juniorandroid.helper;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,11 +13,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.sugiartha.juniorandroid.model.Auth;
+import com.sugiartha.juniorandroid.utils.Token;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class AuthDao extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 5;
 
     static final String DATABASE_NAME = "digitalent.db";
 
@@ -35,7 +37,7 @@ public class AuthDao extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         final String SQL_CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_FULLNAME + " TEXT NOT NULL UNIQUE, " +
+                COLUMN_FULLNAME + " TEXT NOT NULL, " +
                 COLUMN_USERNAME + " TEXT NOT NULL UNIQUE, " +
                 COLUMN_PASSWORD + " TEXT NOT NULL, " +
                 COLUMN_GENDER + " TEXT NOT NULL);";
@@ -74,8 +76,14 @@ public class AuthDao extends SQLiteOpenHelper {
     }
 
 
+    /**
+     *
+     * @param ctx Activity Context
+     * @param payload user payload from login
+     * @return Authenticated user (fullname, username, gender)
+     */
     @SuppressLint("Range")
-    public Auth authenticate(Auth payload) {
+    public Auth authenticate(Context ctx, Auth payload) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_USER + " WHERE " + COLUMN_USERNAME + " = ?";
         Cursor cursor = db.rawQuery(query, new String[]{payload.getUsername()});
@@ -90,6 +98,14 @@ public class AuthDao extends SQLiteOpenHelper {
                 user.setUsername(cursor.getString(cursor.getColumnIndex(COLUMN_USERNAME)));
                 user.setGender(cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)));
 
+                String token = Token.generateToken(user);
+
+                SharedPreferences sharedPreferences = ctx.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("token", token);
+                editor.apply();
+
+
                 cursor.close();
                 db.close();
                 return user;
@@ -98,6 +114,20 @@ public class AuthDao extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return null; // Authentication failed
+    }
+
+    public void dropAllTables(SQLiteDatabase db) {
+        // List of table names in your database
+        String[] tableNames = {
+                TABLE_USER,
+        };
+
+        for (String tableName : tableNames) {
+            String dropTableQuery = "DROP TABLE IF EXISTS " + tableName;
+            db.execSQL(dropTableQuery);
+        }
+
+        onCreate(db);
     }
 
 

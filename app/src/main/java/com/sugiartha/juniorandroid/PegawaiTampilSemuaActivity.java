@@ -12,6 +12,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +30,7 @@ public class PegawaiTampilSemuaActivity extends AppCompatActivity implements Lis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pegawai_tampil_semua);
+        ActivityUtils.setAppBar(PegawaiTampilSemuaActivity.this, PegawaiMainActivity.class, "List Pegawai");
 
         listView = (ListView) findViewById(R.id.listView);
         listView.setOnItemClickListener(this);

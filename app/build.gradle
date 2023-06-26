@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "SECRET_KEY", "\"hv9PuTZkHXp7CPgxjKsfOU4zUTSUxidtqDA15j8CLx9MKJAgQGFae7oyif71EQ4b\""
     }
     buildTypes {
         release {
@@ -28,16 +29,21 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation group: 'com.fathzer', name: 'javaluator', version: '3.0.3'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //
     def lottieVersion = "6.0.0"
-    implementation 'com.synnapps:carouselview:0.1.4'
+    def JJWT_RELEASE_VERSION = "0.11.5"
     implementation 'com.karumi:dexter:6.2.3'
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.github.tapadoo:alerter:7.2.4'
     implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation group: 'at.favre.lib', name: 'bcrypt', version: '0.10.2'
+    implementation "io.jsonwebtoken:jjwt-api:$JJWT_RELEASE_VERSION"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:$JJWT_RELEASE_VERSION"
+    runtimeOnly "io.jsonwebtoken:jjwt-jackson:$JJWT_RELEASE_VERSION"
 }

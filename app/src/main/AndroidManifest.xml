@@ -30,11 +30,14 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".StorageActivity"
-            android:exported="false" />
+            android:exported="false"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name=".InternalExternalActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name=".CatatanExternalActivity"
             android:exported="false" />
         <activity
@@ -57,23 +60,40 @@
             android:name=".SQLiteActivity"
             android:label="@string/title_activity_sqlite"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PegawaiTampilSemuaActivity" />
-        <activity android:name=".PegawaiTampilActivity" />
-        <activity android:name=".PegawaiMainActivity" />
-        <activity android:name=".ListActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".PegawaiTampilSemuaActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".PegawaiTampilActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".PegawaiMainActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".ListActivity" />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".ListViewActivity" />
-        <activity android:name=".HitungBMIActivity" />
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".HitungBMIActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name=".CalculatorActivity"
-            android:label="Kalkulator Advance" />
+             />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".BilanganActivity" />
-        <activity android:name=".KalkulatorActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".LoginActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".BilanganActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".KalkulatorActivity" />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".LingkaranActivity" />
