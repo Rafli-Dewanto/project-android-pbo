@@ -58,7 +58,9 @@
             android:name=".SQLiteActivity"
             android:label="@string/title_activity_sqlite"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PegawaiTampilSemuaActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".PegawaiTampilSemuaActivity" />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".PegawaiTampilActivity" />
