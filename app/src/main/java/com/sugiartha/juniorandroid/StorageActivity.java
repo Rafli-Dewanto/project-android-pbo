@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sugiartha.juniorandroid.utils.ActivityUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,6 +25,7 @@ public class StorageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage);
+        ActivityUtils.setAppBar(StorageActivity.this, MainActivity.class, "Storage");
 
         InputData = findViewById(R.id.input_data);
         Internal = findViewById(R.id.save_internal);
