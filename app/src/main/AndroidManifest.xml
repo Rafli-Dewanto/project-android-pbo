@@ -85,9 +85,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
-        <activity
-            android:theme="@style/AppTheme.NoActionBar"
-            android:name=".BilanganActivity" />
+        <activity android:name=".BilanganActivity" />
         <activity android:name=".KalkulatorActivity" />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
