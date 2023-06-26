@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ public class CatatanExternalActivity extends AppCompatActivity {
     TextView textCatatan;
 
     static final int READ_BLOCK_SIZE = 100;
+    Animation slideInAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class CatatanExternalActivity extends AppCompatActivity {
         btnSimpan = findViewById(R.id.btn_simpan);
         btnLihat = findViewById(R.id.btn_baca);
         textCatatan = findViewById(R.id.text_catatan);
+        slideInAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_in);
 
         String path = this.getFilesDir().getAbsolutePath() + "/catatan.txt";
         File file = new File(path);
@@ -76,6 +80,7 @@ public class CatatanExternalActivity extends AppCompatActivity {
                     InputRead.close();
                     textCatatan.setText(s.toString());
                     textCatatan.setVisibility(View.VISIBLE);
+                    textCatatan.startAnimation(slideInAnimation);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
