@@ -72,6 +72,7 @@
                     android:textAlignment="center"
                     android:layout_width="140dp"
                     android:layout_height="50dp"
+                    android:inputType="number"
                     android:layout_gravity="center"
                     android:hint="Angka kedua"
                     android:background="@drawable/form_edit"
