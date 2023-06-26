@@ -1,15 +1,17 @@
 # Project Android PBO
-repository tugas kelompok mata kuliah pemrograman berbasis objek materi android
+Repository tugas kelompok mata kuliah pemrograman berbasis objek materi android
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Requirements](#requirements)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
+- [Project Android PBO](#project-android-pbo)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+  - [Contributing](#contributing)
+  - [Acknowledgements](#acknowledgements)
+  - [License](#license)
 
 ## Getting Started
 
@@ -30,7 +32,6 @@ These instructions will help you set up the project on your local machine for de
   - androidx.appcompat:appcompat:1.6.1
   - androidx.constraintlayout:constraintlayout:2.1.4
 - Third-party libraries:
-  - CarouselView library version: 0.1.4
   - Dexter library version: 6.2.3
   - Flexbox Layout version: 3.0.0
   - Alerter library version: 7.2.4
@@ -72,7 +73,6 @@ To contribute to the project, please follow the steps below:
 
 ## Acknowledgements
 
-- [CarouselView library](https://github.com/sayyam/carouselview)
 - [Dexter library](https://github.com/Karumi/Dexter)
 - [Flexbox Layout](https://github.com/google/flexbox-layout)
 - [Alerter Library](https://github.com/Tapadoo/Alerter)
