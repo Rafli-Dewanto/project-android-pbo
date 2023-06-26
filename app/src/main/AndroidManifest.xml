@@ -32,6 +32,7 @@
             android:name=".StorageActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name=".InternalExternalActivity"
             android:exported="false" />
         <activity
@@ -58,7 +59,9 @@
             android:label="@string/title_activity_sqlite"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PegawaiTampilSemuaActivity" />
-        <activity android:name=".PegawaiTampilActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".PegawaiTampilActivity" />
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".PegawaiMainActivity" />
