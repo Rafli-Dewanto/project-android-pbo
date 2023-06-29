@@ -1,8 +1,10 @@
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".SensorActivity"
     android:orientation="vertical">
 
     <com.sugiartha.juniorandroid.components.DynamicAppBar
@@ -10,11 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="40dp"
-        android:src="@drawable/sensor"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/anim"
+        android:layout_width="match_parent"
+        app:lottie_rawRes="@raw/holographic"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="true"
+        android:layout_height="400dp" />
 
     <TextView
         android:id="@+id/proximitySensor"
@@ -22,7 +26,12 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:gravity="center"
         android:id="@+id/data"
+        android:textColor="@color/azure_500"
+        android:textFontWeight="600"
+        android:fontFamily="@font/poppins_family"
+        android:text="lorem"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="50dp" />
